@@ -6,6 +6,27 @@
             "width": 768,
             "x": 0,
             "y": 0
+        },
+        {
+            "fileName": "maps/jamestown.tmx",
+            "height": 800,
+            "width": 960,
+            "x": 1000,
+            "y": 0
+        },
+        {
+            "fileName": "maps/wilderness.tmx",
+            "height": 800,
+            "width": 800,
+            "x": 2200,
+            "y": 0
+        },
+        {
+            "fileName": "maps/powhatan-village.tmx",
+            "height": 800,
+            "width": 800,
+            "x": 1000,
+            "y": 1000
         }
     ],
     "onlyShowAdjacentMaps": false,

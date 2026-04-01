@@ -230,6 +230,9 @@
                 <button onclick="dbgJumpTo('quest1-friend')">Q1 Friend</button>
                 <button onclick="dbgJumpTo('quest1-done')">Q1 Done</button>
                 <button onclick="dbgJumpTo('quest2-start')">Q2 Start</button>
+                <button onclick="dbgJumpTo('quest2-build')">Q2 Build</button>
+                <button onclick="dbgJumpTo('quest2-done')">Q2 Done</button>
+                <button onclick="dbgJumpTo('quest3-start')">Q3 Start</button>
             </div>
 
             <h4>Map</h4>
@@ -339,7 +342,9 @@
             // Reset all quest vars first
             const vars = [
                 'current_quest', 'quest_1a', 'quest_1b', 'quest_1b_crates',
-                'quest_1c', 'storm_hits', 'quest_1d', 'richard_friend', 'AFTER_INTRO'
+                'quest_1c', 'storm_hits', 'quest_1d', 'richard_friend', 'AFTER_INTRO',
+                'quest_2a', 'quest_2_logs', 'quest_2b', 'quest_2_hay', 'quest_2_mud',
+                'quest_2c', 'quest_2_walls', 'quest_2d', 'quest_2d_logs', 'quest_2e'
             ];
             vars.forEach(v => p.setVariable(v, undefined));
             localStorage.setItem('storm-active', 'false');
@@ -390,13 +395,44 @@
                     p.setVariable('current_quest', 2);
                     p.changeMap('jamestown');
                     break;
+                case 'quest2-build':
+                    p.setVariable('current_quest', 2);
+                    p.setVariable('quest_2a', 'complete');
+                    p.setVariable('quest_2_logs', 10);
+                    p.setVariable('quest_2b', 'complete');
+                    p.setVariable('quest_2_hay', 5);
+                    p.setVariable('quest_2_mud', 5);
+                    p.setVariable('quest_2c', 'active');
+                    p.setVariable('quest_2_walls', 0);
+                    p.changeMap('jamestown');
+                    break;
+                case 'quest2-done':
+                    p.setVariable('current_quest', 2);
+                    p.setVariable('quest_2a', 'complete');
+                    p.setVariable('quest_2b', 'complete');
+                    p.setVariable('quest_2c', 'complete');
+                    p.setVariable('quest_2d', 'complete');
+                    p.setVariable('quest_2e', 'complete');
+                    p.changeMap('jamestown');
+                    break;
+                case 'quest3-start':
+                    p.setVariable('current_quest', 3);
+                    p.setVariable('quest_2a', 'complete');
+                    p.setVariable('quest_2b', 'complete');
+                    p.setVariable('quest_2c', 'complete');
+                    p.setVariable('quest_2d', 'complete');
+                    p.setVariable('quest_2e', 'complete');
+                    p.changeMap('wilderness');
+                    break;
             }
             console.log('Jumped to', preset);
         }
 
         const DBG_KEYS = [
             'current_quest', 'quest_1a', 'quest_1b', 'quest_1b_crates',
-            'quest_1c', 'storm_hits', 'quest_1d', 'richard_friend', 'AFTER_INTRO'
+            'quest_1c', 'storm_hits', 'quest_1d', 'richard_friend', 'AFTER_INTRO',
+            'quest_2a', 'quest_2_logs', 'quest_2b', 'quest_2_hay', 'quest_2_mud',
+            'quest_2c', 'quest_2_walls', 'quest_2d', 'quest_2d_logs', 'quest_2e'
         ];
 
         function dbgCopyVars() {

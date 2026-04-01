@@ -3,7 +3,10 @@
     "allow": [
       "Bash(npm run:*)",
       "Bash(git add:*)",
-      "Bash(git commit -m ':*)"
+      "Bash(git commit -m ':*)",
+      "Bash(chmod +x /Users/paulzaich/code/blood-on-the-river/scripts/generate-jamestown-tileset.sh)",
+      "Bash(bash /Users/paulzaich/code/blood-on-the-river/scripts/generate-jamestown-tileset.sh)",
+      "Bash(node:*)"
     ]
   }
 }
