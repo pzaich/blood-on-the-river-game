@@ -1,20 +1,12 @@
 import { RpgPlayer, type RpgPlayerHooks, Control, Components } from '@rpgjs/server'
 
-const SAVE_KEY = 'blood-on-the-river-save'
-
 const player: RpgPlayerHooks = {
     onConnected(player: RpgPlayer) {
         player.name = 'Samuel'
         player.setComponentsTop(Components.text('{name}'))
 
-        // Expose player to debug panel (dev mode only)
         if (typeof window !== 'undefined') {
             ;(window as any).__PLAYER__ = player
-            // Log available maps for debugging
-            try {
-                const maps = (player as any).server?.sceneMap?.getMaps?.() || []
-                console.log('Available maps:', maps.map((m: any) => m.id || m.name))
-            } catch(e) {}
         }
     },
 

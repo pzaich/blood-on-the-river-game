@@ -1,40 +1,4 @@
-import { RpgEvent, EventData, RpgPlayer, Move, RpgWorld, Components } from '@rpgjs/server'
-
-function startBarrelMovement(player: RpgPlayer) {
-    const barrelNames = ['barrel-1', 'barrel-2', 'barrel-3', 'barrel-4']
-    const speeds = [900, 700, 600, 750]
-    const intervals: any[] = []
-
-    barrelNames.forEach((name, i) => {
-        const interval = setInterval(async () => {
-            if (player.getVariable('quest_1c') !== 'active') {
-                intervals.forEach(iv => clearInterval(iv))
-                return
-            }
-            try {
-                const events = player.otherPlayersCollision || []
-                // Find barrel event on the map and move it
-                const map = (player as any).getCurrentMap?.()
-                if (map) {
-                    const ev = map.getEventByName?.(name) || map.events?.[name]
-                    if (ev && ev.moveRoutes) {
-                        await ev.moveRoutes([Move.tileRandom(2)])
-                    }
-                }
-            } catch {}
-        }, speeds[i])
-        intervals.push(interval)
-    })
-
-    // Store intervals so we can clean up
-    ;(player as any).__stormIntervals = intervals
-}
-
-function stopBarrelMovement(player: RpgPlayer) {
-    const intervals = (player as any).__stormIntervals || []
-    intervals.forEach((iv: any) => clearInterval(iv))
-    ;(player as any).__stormIntervals = []
-}
+import { RpgEvent, EventData, RpgPlayer, Components } from '@rpgjs/server'
 
 @EventData({
     name: 'captain-smith',
@@ -117,9 +81,7 @@ export default class CaptainSmithEvent extends RpgEvent {
                 await player.showText("A storm is coming! Dodge the sliding barrels for 15 seconds!", {
                     talkWith: this
                 })
-                startBarrelMovement(player)
                 setTimeout(() => {
-                    stopBarrelMovement(player)
                     const hits = player.getVariable('storm_hits') || 0
                     if (hits < 3) {
                         player.setVariable('quest_1c', 'survived')
@@ -148,9 +110,7 @@ export default class CaptainSmithEvent extends RpgEvent {
                 await player.showText("Brace yourself, Samuel! Here comes the storm again! Dodge the barrels!", {
                     talkWith: this
                 })
-                startBarrelMovement(player)
                 setTimeout(() => {
-                    stopBarrelMovement(player)
                     const h = player.getVariable('storm_hits') || 0
                     if (h < 3) {
                         player.setVariable('quest_1c', 'survived')
