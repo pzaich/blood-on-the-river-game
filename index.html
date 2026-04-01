@@ -233,6 +233,9 @@
                 <button onclick="dbgJumpTo('quest2-build')">Q2 Build</button>
                 <button onclick="dbgJumpTo('quest2-done')">Q2 Done</button>
                 <button onclick="dbgJumpTo('quest3-start')">Q3 Start</button>
+                <button onclick="dbgJumpTo('quest4-start')">Q4 Start</button>
+                <button onclick="dbgJumpTo('quest4-done')">Q4 Done</button>
+                <button onclick="dbgJumpTo('quest5-start')">Q5 Start</button>
             </div>
 
             <h4>Map</h4>
@@ -420,12 +423,25 @@
                     break;
                 case 'quest3-start':
                     p.setVariable('current_quest', 3);
-                    p.setVariable('quest_2a', 'complete');
-                    p.setVariable('quest_2b', 'complete');
-                    p.setVariable('quest_2c', 'complete');
-                    p.setVariable('quest_2d', 'complete');
-                    p.setVariable('quest_2e', 'complete');
                     p.changeMap('wilderness');
+                    break;
+                case 'quest4-start':
+                    p.setVariable('current_quest', 4);
+                    p.changeMap('powhatan-village');
+                    break;
+                case 'quest4-done':
+                    p.setVariable('current_quest', 4);
+                    p.setVariable('quest_4a', 'complete');
+                    p.setVariable('quest_4b', 'complete');
+                    p.setVariable('quest_4c', 'complete');
+                    p.setVariable('quest_4d', 'complete');
+                    p.setVariable('quest_4e', 'complete');
+                    p.setVariable('quest_4f', 'complete');
+                    p.changeMap('powhatan-village');
+                    break;
+                case 'quest5-start':
+                    p.setVariable('current_quest', 5);
+                    p.changeMap('jamestown');
                     break;
             }
             console.log('Jumped to', preset);
@@ -438,7 +454,10 @@
             'quest_2c', 'quest_2_walls', 'quest_2d', 'quest_2d_logs', 'quest_2e',
             'quest_3a', 'quest_3a_hits', 'quest_3b', 'quest_3b_hits',
             'quest_3c', 'quest_3_mussels', 'quest_3_crabs',
-            'quest_3d', 'quest_3_rabbits', 'quest_3e'
+            'quest_3d', 'quest_3_rabbits', 'quest_3e',
+            'quest_4a', 'quest_4b', 'quest_4b_hits',
+            'quest_4c', 'quest_4c_hide', 'quest_4c_sinew',
+            'quest_4d', 'quest_4d_goals', 'quest_4e', 'quest_4f'
         ];
 
         function dbgCopyVars() {

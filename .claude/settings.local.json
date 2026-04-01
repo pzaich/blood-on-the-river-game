@@ -11,7 +11,9 @@
       "Bash(git remote:*)",
       "Bash(git push:*)",
       "Bash(chmod +x /Users/paulzaich/code/blood-on-the-river/scripts/generate-wilderness-tileset.sh)",
-      "Bash(bash /Users/paulzaich/code/blood-on-the-river/scripts/generate-wilderness-tileset.sh)"
+      "Bash(bash /Users/paulzaich/code/blood-on-the-river/scripts/generate-wilderness-tileset.sh)",
+      "Bash(chmod +x /Users/paulzaich/code/blood-on-the-river/scripts/generate-powhatan-tileset.sh)",
+      "Bash(bash /Users/paulzaich/code/blood-on-the-river/scripts/generate-powhatan-tileset.sh)"
     ]
   }
 }
