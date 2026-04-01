@@ -6,7 +6,12 @@
       "Bash(git commit -m ':*)",
       "Bash(chmod +x /Users/paulzaich/code/blood-on-the-river/scripts/generate-jamestown-tileset.sh)",
       "Bash(bash /Users/paulzaich/code/blood-on-the-river/scripts/generate-jamestown-tileset.sh)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)",
+      "Bash(chmod +x /Users/paulzaich/code/blood-on-the-river/scripts/generate-wilderness-tileset.sh)",
+      "Bash(bash /Users/paulzaich/code/blood-on-the-river/scripts/generate-wilderness-tileset.sh)"
     ]
   }
 }
