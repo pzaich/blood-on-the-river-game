@@ -332,10 +332,27 @@
             console.log('Set', key, '=', value);
         }
 
+        const MAP_STARTS = {
+            'ship': { x: 384, y: 288 },
+            'jamestown': { x: 480, y: 320 },
+            'wilderness': { x: 32, y: 384 },
+            'powhatan-village': { x: 384, y: 736 }
+        };
+
         function dbgChangeMap(mapName) {
             const p = dbgGetPlayer();
             if (!p) { console.warn('Player not ready'); return; }
-            p.changeMap(mapName);
+            const pos = MAP_STARTS[mapName] || { x: 200, y: 200 };
+            console.log('Changing map to', mapName, 'at', pos);
+            try {
+                const result = p.changeMap(mapName, pos);
+                if (result && result.then) {
+                    result.then(() => console.log('Map changed to', mapName))
+                          .catch(e => console.error('changeMap failed:', e));
+                }
+            } catch(e) {
+                console.error('changeMap error:', e);
+            }
         }
 
         function dbgJumpTo(preset) {
@@ -358,14 +375,14 @@
             switch(preset) {
                 case 'quest1-start':
                     p.setVariable('quest_1a', 'active');
-                    p.changeMap('ship');
+                    dbgChangeMap('ship');
                     break;
                 case 'quest1-crates':
                     p.setVariable('quest_1a', 'complete');
                     p.setVariable('quest_1b', 'active');
                     p.setVariable('quest_1b_crates', 0);
                     p.setVariable('current_quest', 1);
-                    p.changeMap('ship');
+                    dbgChangeMap('ship');
                     break;
                 case 'quest1-storm':
                     p.setVariable('quest_1a', 'complete');
@@ -374,7 +391,7 @@
                     p.setVariable('storm_hits', 0);
                     p.setVariable('current_quest', 1);
                     localStorage.setItem('storm-active', 'true');
-                    p.changeMap('ship');
+                    dbgChangeMap('ship');
                     break;
                 case 'quest1-friend':
                     p.setVariable('quest_1a', 'complete');
@@ -382,7 +399,7 @@
                     p.setVariable('quest_1c', 'complete');
                     p.setVariable('quest_1d', 'active');
                     p.setVariable('current_quest', 1);
-                    p.changeMap('ship');
+                    dbgChangeMap('ship');
                     break;
                 case 'quest1-done':
                     p.setVariable('quest_1a', 'complete');
@@ -391,7 +408,7 @@
                     p.setVariable('quest_1d', 'complete');
                     p.setVariable('richard_friend', true);
                     p.setVariable('current_quest', 1);
-                    p.changeMap('ship');
+                    dbgChangeMap('ship');
                     break;
                 case 'quest2-start':
                     p.setVariable('quest_1a', 'complete');
@@ -399,7 +416,7 @@
                     p.setVariable('quest_1c', 'complete');
                     p.setVariable('quest_1d', 'complete');
                     p.setVariable('current_quest', 2);
-                    p.changeMap('jamestown');
+                    dbgChangeMap('jamestown');
                     break;
                 case 'quest2-build':
                     p.setVariable('current_quest', 2);
@@ -410,7 +427,7 @@
                     p.setVariable('quest_2_mud', 5);
                     p.setVariable('quest_2c', 'active');
                     p.setVariable('quest_2_walls', 0);
-                    p.changeMap('jamestown');
+                    dbgChangeMap('jamestown');
                     break;
                 case 'quest2-done':
                     p.setVariable('current_quest', 2);
@@ -419,15 +436,15 @@
                     p.setVariable('quest_2c', 'complete');
                     p.setVariable('quest_2d', 'complete');
                     p.setVariable('quest_2e', 'complete');
-                    p.changeMap('jamestown');
+                    dbgChangeMap('jamestown');
                     break;
                 case 'quest3-start':
                     p.setVariable('current_quest', 3);
-                    p.changeMap('wilderness');
+                    dbgChangeMap('wilderness');
                     break;
                 case 'quest4-start':
                     p.setVariable('current_quest', 4);
-                    p.changeMap('powhatan-village');
+                    dbgChangeMap('powhatan-village');
                     break;
                 case 'quest4-done':
                     p.setVariable('current_quest', 4);
@@ -437,11 +454,11 @@
                     p.setVariable('quest_4d', 'complete');
                     p.setVariable('quest_4e', 'complete');
                     p.setVariable('quest_4f', 'complete');
-                    p.changeMap('powhatan-village');
+                    dbgChangeMap('powhatan-village');
                     break;
                 case 'quest5-start':
                     p.setVariable('current_quest', 5);
-                    p.changeMap('jamestown');
+                    dbgChangeMap('jamestown');
                     break;
             }
             console.log('Jumped to', preset);
