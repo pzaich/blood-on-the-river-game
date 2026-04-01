@@ -187,7 +187,7 @@ const objectXml = objects.map(obj =>
 ).join('\n')
 
 const tmx = `<?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="${W}" height="${H}" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="${objects.length + 1}">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="${W}" height="${H}" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="${Math.max(...objects.map(o => o.id)) + 1}">
  <tileset firstgid="1" source="jamestown-tiles.tsx"/>
  <layer id="1" name="Ground" width="${W}" height="${H}">
   <data encoding="base64">

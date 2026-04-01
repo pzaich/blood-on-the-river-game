@@ -62,7 +62,7 @@ function generateTMX({ width, height, layers, objects }) {
   }).join('\n')
 
   return `<?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="${width}" height="${height}" tilewidth="32" tileheight="32" infinite="0" nextlayerid="${layers.length + 2}" nextobjectid="${objects.length + 1}">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="${width}" height="${height}" tilewidth="32" tileheight="32" infinite="0" nextlayerid="${layers.length + 2}" nextobjectid="${Math.max(...objects.map(o => o.id)) + 1}">
 ${tilesets}
 ${layerXml}
  <objectgroup id="${layers.length + 1}" name="Object Layer 1">
