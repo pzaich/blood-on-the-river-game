@@ -9,7 +9,7 @@ export default class NamontackJTEvent extends RpgEvent {
 
     async onAction(player: RpgPlayer) {
         const quest = player.getVariable('current_quest')
-        if (quest !== 5) return
+        if (quest != 5) return
 
         const q5a = player.getVariable('quest_5a')
 

@@ -1,11 +1,14 @@
-import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
+import { RpgEvent, EventData, RpgPlayer, Components } from '@rpgjs/server'
 
 @EventData({
     name: 'chief-powhatan',
     hitbox: { width: 24, height: 16 }
 })
 export default class ChiefPowhatanEvent extends RpgEvent {
-    onInit() { this.setGraphic('powhatan') }
+    onInit() {
+        this.setGraphic('powhatan')
+        this.setComponentsTop(Components.text('Chief Powhatan'))
+    }
 
     async onAction(player: RpgPlayer) {
         if (player.getVariable('quest_4e') === 'active') {

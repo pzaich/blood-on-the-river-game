@@ -13,7 +13,7 @@ export default class CaptainSmithJTEvent extends RpgEvent {
     async onAction(player: RpgPlayer) {
         const quest = player.getVariable('current_quest')
 
-        if (quest === 2) {
+        if (quest == 2) {
             const q2a = player.getVariable('quest_2a')
             const q2f = player.getVariable('quest_2f')
 
@@ -36,17 +36,17 @@ export default class CaptainSmithJTEvent extends RpgEvent {
             return
         }
 
-        if (quest === 3) {
+        if (quest == 3) {
             await player.showText("Head east to the wilderness to hunt, Samuel.", { talkWith: this })
             return
         }
 
-        if (quest === 4) {
+        if (quest == 4) {
             await player.showText("Visit the Powhatan village to the north, Samuel. We need allies.", { talkWith: this })
             return
         }
 
-        if (quest === 5) {
+        if (quest == 5) {
             const q5a = player.getVariable('quest_5a')
             const q5b = player.getVariable('quest_5b')
             const q5c = player.getVariable('quest_5c')

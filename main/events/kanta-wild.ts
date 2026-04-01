@@ -12,7 +12,7 @@ export default class KantaWildEvent extends RpgEvent {
 
     async onAction(player: RpgPlayer) {
         const quest = player.getVariable('current_quest')
-        if (quest !== 3) {
+        if (quest != 3) {
             await player.showText("I am Kanta. Namontack and I will teach you to survive in the wilderness.", { talkWith: this })
             return
         }

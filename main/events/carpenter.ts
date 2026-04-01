@@ -12,7 +12,7 @@ export default class CarpenterEvent extends RpgEvent {
 
     async onAction(player: RpgPlayer) {
         const quest = player.getVariable('current_quest')
-        if (quest !== 2) {
+        if (quest != 2) {
             await player.showText("I'm the carpenter. When it's time to build, come talk to me.", { talkWith: this })
             return
         }

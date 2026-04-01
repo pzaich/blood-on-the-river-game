@@ -12,7 +12,7 @@ export default class KantaEvent extends RpgEvent {
 
     async onAction(player: RpgPlayer) {
         const quest = player.getVariable('current_quest')
-        if (quest === 4) {
+        if (quest == 4) {
             const q4b = player.getVariable('quest_4b')
             if (q4b === 'active') {
                 await player.showText("You must focus, Samuel! Pull the string back to your cheek and release smoothly.", { talkWith: this })

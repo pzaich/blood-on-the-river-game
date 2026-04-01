@@ -12,7 +12,7 @@ export default class HunterEvent extends RpgEvent {
 
     async onAction(player: RpgPlayer) {
         const quest = player.getVariable('current_quest')
-        if (quest !== 3) {
+        if (quest != 3) {
             await player.showText("I'm the hunter. Come back when you're ready to learn.", { talkWith: this })
             return
         }

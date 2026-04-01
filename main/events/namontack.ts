@@ -9,7 +9,7 @@ export default class NamontackEvent extends RpgEvent {
 
     async onAction(player: RpgPlayer) {
         const quest = player.getVariable('current_quest')
-        if (quest !== 4) {
+        if (quest != 4) {
             await player.showText("Welcome, friend. Come back when you are ready to learn our ways.", { talkWith: this })
             return
         }
