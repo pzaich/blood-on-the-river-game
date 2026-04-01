@@ -19,40 +19,43 @@ import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const mapsDir = join(__dirname, '..', 'main', 'worlds', 'maps')
 
-// Ship uses same 32-tile tileset as land maps, repurposing tiles:
-// water=5(river), deck=3(dirt), hull=11(wall-v), etc.
+// Tile mapping for ship — only use water, wood, wall, and a few object tiles
+// Tileset: 0=grass 1=grass2 2=dirt/plank 3=path/deck 4=water 5=shallow 6=sand 7=dark floor
+//          8=pine 9=oak 10=wall-v 11=wall-h 12=gate 13=house 14=store 15=tower
+//          16=fire 17=logs 18=hay 19=mud 20=crate 21=barrel 22=construct 23=cannon
+//          24=flowers 25=bush 26=sign 27=wheel 28=forest 29=riverbank 30=corner 31=dock
 const _ = 0
-const DW = 5       // water = ocean
-const WW = 6       // shallow = waves
-const WP = 3       // dirt = deck planks
-const DP = 4       // path = dark deck
-const HW = 11      // wall-h = hull
-const MA = 9       // pine = mast
-const RO = 3       // dirt = rope area
-const RA = 11      // wall-h = rail
-const BW = 30      // corner = bow
-const ST = 14      // storehouse = stern cabin
-const SR = 4       // path = stairs (walkable)
-const CN = 24      // cannon
+const DW = 5       // deep water/ocean
+const WW = 6       // waves/shallow
+const WP = 3       // wood plank deck (path tile - warm brown planks)
+const DP = 3       // dark deck (same wood planks)
+const HW = 11      // hull wall (wall-h - dark planks with bolts)
+const MA = 11      // mast (reuse wall - tall dark structure)
+const RO = 3       // rope on deck (same as deck)
+const RA = 11      // rail (wall)
+const BW = 30      // bow (corner wall)
+const ST = 30      // stern (corner wall)
+const SR = 3       // stairs (walkable deck)
+const CN = 24      // cannon (repurpose cannon tile 23+1=24)
 const CR = 21      // crate
 const BR = 22      // barrel
-const SL = 1       // grass2 = sail area
-const HL = 11      // wall-h = hull left
-const HR = 11      // wall-h = hull right
-const HT = 12      // wall-v... wait, 11=wall-h
-const HB = 12      // gate area = hull bottom
-const TL = 30      // corner
-const TR = 30      // corner
-const BL = 30      // corner
-const BR2 = 30     // corner
-const DL = 3       // dirt = light deck
-const DD = 8       // mud = dark deck
-const HA = 13      // gate = hatch
-const WH = 27      // well = wheel area
-const LN = 17      // fire = lantern
-const AN = 26      // sign = anchor
-const FL = 16      // tower = flag
-const BF = 8       // mud = below deck
+const SL = 3       // sail area (just deck)
+const HL = 11      // hull left
+const HR = 11      // hull right
+const HT = 11      // hull top
+const HB = 11      // hull bottom
+const TL = 30      // corner top-left
+const TR = 30      // corner top-right
+const BL = 30      // corner bottom-left
+const BR2 = 30     // corner bottom-right
+const DL = 3       // deck light (wood planks)
+const DD = 3       // deck dark (same planks)
+const HA = 12      // hatch (gate - opening)
+const WH = 28      // wheel (dense forest as dark circle - placeholder)
+const LN = 21      // lantern (barrel as placeholder)
+const AN = 26      // anchor (sign)
+const FL = 16      // flag (tower tile with red flag)
+const BF = 8       // below deck floor (dark planks = tile 8 = mud/dark)
 
 function encodeTiles(grid) {
   const height = grid.length
