@@ -144,6 +144,14 @@ export default class CaptainSmithEvent extends RpgEvent {
             return
         }
 
+        // Quest 1d: Waiting for player to befriend Richard
+        if (player.getVariable('quest_1d') === 'active') {
+            await player.showText("Go below deck and find Richard Mutton. Share your bread with him — we need friends on this journey.", {
+                talkWith: this
+            })
+            return
+        }
+
         // Quest 1 complete
         if (player.getVariable('quest_1d') === 'complete') {
             await player.showText("We're almost to Virginia, Samuel. Get ready for a new world!", {
