@@ -60,9 +60,9 @@ export default class Barrel1Event extends RpgEvent {
             }
             this.moving = false
             this.stopSliding()
-            player.showText("Knocked down too many times! Talk to Captain Smith to try again.")
+            player.showNotification("Knocked down! Talk to Captain Smith to retry.", { time: 3000 })
         } else {
-            player.showText(`Ouch! A barrel hit you! (${hits}/3)`)
+            player.showNotification(`Barrel hit! (${hits}/3)`, { time: 1500 })
         }
     }
 }
