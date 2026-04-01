@@ -19,39 +19,43 @@ import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const mapsDir = join(__dirname, '..', 'main', 'worlds', 'maps')
 
-// Tile constants (firstgid=1)
-const _ = 0        // empty
-const DW = 1       // deep water
-const WW = 2       // water wave
-const WP = 3       // wood plank
-const DP = 4       // dark plank
-const HW = 5       // hull wall
-const MA = 6       // mast
-const RO = 7       // rope
-const RA = 8       // rail
-const BW = 9       // bow
-const ST = 10      // stern
-const SR = 11      // stairs
-const CN = 12      // cannon
-const CR = 13      // crate
-const BR = 14      // barrel
-const SL = 15      // sail
-const HL = 17      // hull left
-const HR = 18      // hull right
-const HT = 19      // hull top
-const HB = 20      // hull bottom
-const TL = 21      // hull top-left
-const TR = 22      // hull top-right
-const BL = 23      // hull bottom-left
-const BR2 = 24     // hull bottom-right
-const DL = 25      // deck light
-const DD = 26      // deck dark
-const HA = 27      // hatch
-const WH = 28      // wheel
-const LN = 29      // lantern
-const AN = 30      // anchor
-const FL = 31      // flag
-const BF = 32      // below deck floor
+// Tile constants — mapped to jamestown tileset (shared across all maps)
+// Row 0: 1=grass, 2=grass2, 3=dirt, 4=path, 5=river, 6=shallow, 7=sand, 8=mud
+// Row 1: 9=pine, 10=oak, 11=palisade-v, 12=palisade-h, 13=gate, 14=house, 15=storehouse, 16=watchtower
+// Row 2: 17=campfire, 18=log pile, 19=hay, 20=mud pile, 21=crate, 22=barrel, 23=construction, 24=cannon
+// Row 3: 25=flowers, 26=bush, 27=sign, 28=well, 29=dense forest, 30=river bank, 31=corner wall, 32=dock
+const _ = 0
+const DW = 5       // river water = ocean
+const WW = 6       // shallow water = waves
+const WP = 3       // dirt = wood deck
+const DP = 4       // path = dark deck
+const HW = 11      // palisade-v = hull wall
+const MA = 9       // pine tree = mast
+const RO = 3       // dirt = rope on deck
+const RA = 12      // palisade-h = rail
+const BW = 31      // corner wall = bow
+const ST = 14      // house = stern cabin
+const SR = 4       // path = stairs (walkable)
+const CN = 24      // cannon
+const CR = 21      // crate
+const BR = 22      // barrel
+const SL = 1       // grass = sail (placeholder)
+const HL = 11      // palisade-v = hull left
+const HR = 11      // palisade-v = hull right
+const HT = 12      // palisade-h = hull top
+const HB = 12      // palisade-h = hull bottom
+const TL = 31      // corner wall = hull top-left
+const TR = 31      // corner wall = hull top-right
+const BL = 31      // corner wall = hull bottom-left
+const BR2 = 31     // corner wall = hull bottom-right
+const DL = 3       // dirt = deck light
+const DD = 8       // mud = deck dark
+const HA = 13      // gate = hatch
+const WH = 28      // well = wheel (placeholder)
+const LN = 17      // campfire = lantern
+const AN = 27      // sign = anchor placeholder
+const FL = 16      // watchtower = flag
+const BF = 8       // mud = below deck floor
 
 function encodeTiles(grid) {
   const height = grid.length
