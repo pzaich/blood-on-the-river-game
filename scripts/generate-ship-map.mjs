@@ -191,6 +191,8 @@ const objects = [
   { id: 14, name: 'barrel-4', x: 16 * 32, y: 10 * 32 },
   { id: 15, name: 'barrel-5', x: 13 * 32, y: 6 * 32 },
   { id: 16, name: 'barrel-6', x: 9 * 32, y: 12 * 32 },
+  // James (below deck)
+  { id: 17, name: 'james', x: 10 * 32, y: 22 * 32 },
 ]
 
 const objectXml = objects.map(obj =>
