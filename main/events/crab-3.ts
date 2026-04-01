@@ -14,7 +14,7 @@ export default class Crab3Event extends RpgEvent {
             await player.showText("A crab scuttling along the sand.")
             return
         }
-        this.collected = true
+        this.collected = true; if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'collect')
         const c = (player.getVariable('quest_3_crabs') || 0) + 1
         player.setVariable('quest_3_crabs', c)
         player.showNotification(`Crab caught! (${c}/5)`, { time: 1500 })

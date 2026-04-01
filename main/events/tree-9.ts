@@ -21,18 +21,18 @@ export default class Tree9Event extends RpgEvent {
         const q2f = player.getVariable('quest_2f')
 
         if (q2a === 'active') {
-            this.chopped = true
+            this.chopped = true; if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'chop')
             const logs = (player.getVariable('quest_2_logs') || 0) + 1
             player.setVariable('quest_2_logs', logs)
             player.showNotification(`Chopped a tree! (${logs}/10 logs)`, { time: 1500 })
             if (logs >= 10) player.showNotification("All logs collected! Talk to the carpenter.", { time: 3000 })
         } else if (q2d === 'active') {
-            this.chopped = true
+            this.chopped = true; if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'chop')
             const logs = (player.getVariable('quest_2d_logs') || 0) + 1
             player.setVariable('quest_2d_logs', logs)
             player.showNotification(`Chopped! (${logs}/8 logs for storehouse)`, { time: 1500 })
         } else if (q2f === 'active') {
-            this.chopped = true
+            this.chopped = true; if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'chop')
             const logs = (player.getVariable('quest_2f_logs') || 0) + 1
             player.setVariable('quest_2f_logs', logs)
             player.showNotification(`Chopped! (${logs} logs for houses — need 4 per house)`, { time: 1500 })

@@ -14,7 +14,7 @@ export default class Mussel1Event extends RpgEvent {
             await player.showText("Mussels clinging to the rocks.")
             return
         }
-        this.collected = true
+        this.collected = true; if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'collect')
         const m = (player.getVariable('quest_3_mussels') || 0) + 1
         player.setVariable('quest_3_mussels', m)
         player.showNotification(`Mussel collected! (${m}/5)`, { time: 1500 })

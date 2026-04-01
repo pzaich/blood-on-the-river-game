@@ -14,7 +14,7 @@ export default class Rabbit3Event extends RpgEvent {
             await player.showText("A rabbit hops around the forest.")
             return
         }
-        this.caught = true
+        this.caught = true; if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'animal')
         const r = (player.getVariable('quest_3_rabbits') || 0) + 1
         player.setVariable('quest_3_rabbits', r)
         player.showNotification(`Rabbit caught! (${r}/3)`, { time: 1500 })

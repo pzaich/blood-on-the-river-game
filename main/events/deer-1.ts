@@ -24,7 +24,8 @@ export default class Deer1Event extends RpgEvent {
             await player.showText("You sneak closer... the deer doesn't notice. Now strike!")
             this.hunted = true
             player.setVariable('quest_3e', 'complete')
-            player.showNotification("Deer hunted! You're a true hunter. Talk to the hunter.", { time: 3000 })
+            if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'questComplete')
+            player.showNotification("Deer hunted! You're a true hunter. Talk to Namontack.", { time: 3000 })
         } else if (choice && choice.value === 'bow') {
             this.hunted = true
             player.setVariable('quest_3e', 'complete')

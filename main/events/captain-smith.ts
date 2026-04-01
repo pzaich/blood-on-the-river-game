@@ -77,6 +77,7 @@ export default class CaptainSmithEvent extends RpgEvent {
                 player.setVariable('quest_1c', 'active')
                 if (typeof localStorage !== 'undefined') {
                     localStorage.setItem('storm-active', 'true')
+                    localStorage.setItem('game-sound', 'storm')
                 }
                 await player.showText("A storm is coming! Dodge the sliding barrels for 15 seconds!", {
                     talkWith: this
@@ -106,6 +107,7 @@ export default class CaptainSmithEvent extends RpgEvent {
                 player.setVariable('storm_hits', 0)
                 if (typeof localStorage !== 'undefined') {
                     localStorage.setItem('storm-active', 'true')
+                    localStorage.setItem('game-sound', 'storm')
                 }
                 await player.showText("Brace yourself, Samuel! Here comes the storm again! Dodge the barrels!", {
                     talkWith: this
@@ -163,6 +165,7 @@ export default class CaptainSmithEvent extends RpgEvent {
                     talkWith: this
                 })
                 player.setVariable('current_quest', 2)
+                if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'mapChange')
                 player.changeMap('jamestown')
             }
             return

@@ -20,7 +20,7 @@ export default class Construction3Event extends RpgEvent {
             await player.showText("A construction site. Nothing to do here yet.")
             return
         }
-        this.built = true
+        this.built = true; if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'build')
         const walls = (player.getVariable('quest_2_walls') || 0) + 1
         player.setVariable('quest_2_walls', walls)
         player.showNotification(`Wall built! (${walls}/4)`, { time: 1500 })

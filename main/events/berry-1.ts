@@ -13,7 +13,7 @@ export default class Berry1Event extends RpgEvent {
             await player.showText("Wild berries! They look delicious.")
             return
         }
-        this.collected = true
+        this.collected = true; if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'collect')
         const b = (player.getVariable('quest_3_berries') || 0) + 1
         player.setVariable('quest_3_berries', b)
         player.showNotification(`Berries collected! (${b}/3)`, { time: 1500 })

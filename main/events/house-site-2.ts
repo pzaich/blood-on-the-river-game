@@ -25,7 +25,7 @@ export default class HouseSite2Event extends RpgEvent {
             await player.showText(`This house needs 4 logs to build. Chop more trees! (${logs}/4 logs)`)
             return
         }
-        this.built = true
+        this.built = true; if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'build')
         player.setVariable('quest_2f_logs', logs - 4)
         const houses = (player.getVariable('quest_2f_houses') || 0) + 1
         player.setVariable('quest_2f_houses', houses)

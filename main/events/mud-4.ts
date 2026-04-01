@@ -20,7 +20,7 @@ export default class Mud4Event extends RpgEvent {
             await player.showText("A pile of thick mud near the water.")
             return
         }
-        this.collected = true
+        this.collected = true; if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'collect')
         const mud = (player.getVariable('quest_2_mud') || 0) + 1
         player.setVariable('quest_2_mud', mud)
         player.showNotification(`Gathered mud! (${mud}/5)`, { time: 1500 })

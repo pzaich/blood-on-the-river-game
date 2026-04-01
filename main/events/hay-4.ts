@@ -20,7 +20,7 @@ export default class Hay4Event extends RpgEvent {
             await player.showText("A bundle of dried hay by the riverbank.")
             return
         }
-        this.collected = true
+        this.collected = true; if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'collect')
         const hay = (player.getVariable('quest_2_hay') || 0) + 1
         player.setVariable('quest_2_hay', hay)
         player.showNotification(`Gathered hay! (${hay}/5)`, { time: 1500 })

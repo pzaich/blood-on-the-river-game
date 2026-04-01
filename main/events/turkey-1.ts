@@ -6,7 +6,7 @@ export default class Turkey1Event extends RpgEvent {
     async onAction(player: RpgPlayer) {
         if (this.caught) { await player.showText("Already caught."); return }
         if (player.getVariable('quest_3d') !== 'active') { await player.showText("A wild turkey gobbles around the forest."); return }
-        this.caught = true
+        this.caught = true; if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'animal')
         const r = (player.getVariable('quest_3_rabbits') || 0) + 1
         player.setVariable('quest_3_rabbits', r)
         player.showNotification(`Turkey caught! (${r}/3 animals)`, { time: 1500 })

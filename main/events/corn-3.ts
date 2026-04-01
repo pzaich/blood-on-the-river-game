@@ -6,7 +6,7 @@ export default class Corn3Event extends RpgEvent {
     async onAction(player: RpgPlayer) {
         if (this.collected) { await player.showText("Already harvested."); return }
         if (player.getVariable('quest_3c') !== 'active') { await player.showText("Wild corn grows tall here."); return }
-        this.collected = true
+        this.collected = true; if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'collect')
         const b = (player.getVariable('quest_3_berries') || 0) + 1
         player.setVariable('quest_3_berries', b)
         player.showNotification(`Corn harvested! (${b}/3 crops)`, { time: 1500 })
