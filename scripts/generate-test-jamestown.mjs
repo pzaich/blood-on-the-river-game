@@ -310,6 +310,7 @@ const powTmx = makeMap('powhatan', 20, 20,
     { id: 13, name: 'sinew-pile', x: 5 * 32, y: 7 * 32 },
     { id: 14, name: 'feast-fire', x: 10 * 32, y: 10 * 32 },
     { id: 15, name: 'to-jamestown-pv', x: 10 * 32, y: 19 * 32 },
+    { id: 16, name: 'kanta', x: 14 * 32, y: 8 * 32 },
   ]
 )
 

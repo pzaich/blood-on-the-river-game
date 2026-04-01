@@ -52,6 +52,27 @@ export class CrateSprite {}
 export class TreeSprite {}
 
 @Spritesheet({
+    id: 'crab-sprite',
+    image: require('./crab.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class CrabSprite {}
+
+@Spritesheet({
+    id: 'mussel-sprite',
+    image: require('./mussel.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class MusselSprite {}
+
+@Spritesheet({
+    id: 'namontack-sprite',
+    image: require('./namontack.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class NamontackSprite {}
+
+@Spritesheet({
     id: 'hero',
     image: require('./hero.png'),
     ...RMSpritesheet(3, 4)

@@ -180,11 +180,17 @@ const objects = [
   { id: 6, name: 'supply-crate-3', x: 9 * 32, y: 24 * 32 },    // below deck, must find stairs
   // Richard Mutton (below deck)
   { id: 7, name: 'richard-mutton', x: 12 * 32, y: 20 * 32 },
+  // More ship crew (upper deck)
+  { id: 8, name: 'captain-newport', x: 12 * 32, y: 3 * 32 },    // at the bow, commanding
+  { id: 9, name: 'edward-wingfield', x: 16 * 32, y: 6 * 32 },   // near mast
+  { id: 10, name: 'george-percy', x: 8 * 32, y: 10 * 32 },      // mid-deck
   // Barrels (storm obstacles — spread across upper deck)
-  { id: 8, name: 'barrel-1', x: 8 * 32, y: 6 * 32 },
-  { id: 9, name: 'barrel-2', x: 15 * 32, y: 7 * 32 },
-  { id: 10, name: 'barrel-3', x: 10 * 32, y: 10 * 32 },
-  { id: 11, name: 'barrel-4', x: 16 * 32, y: 9 * 32 },
+  { id: 11, name: 'barrel-1', x: 7 * 32, y: 6 * 32 },
+  { id: 12, name: 'barrel-2', x: 15 * 32, y: 7 * 32 },
+  { id: 13, name: 'barrel-3', x: 10 * 32, y: 10 * 32 },
+  { id: 14, name: 'barrel-4', x: 16 * 32, y: 10 * 32 },
+  { id: 15, name: 'barrel-5', x: 13 * 32, y: 6 * 32 },
+  { id: 16, name: 'barrel-6', x: 9 * 32, y: 12 * 32 },
 ]
 
 const objectXml = objects.map(obj =>

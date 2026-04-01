@@ -6,8 +6,8 @@ import { RpgEvent, EventData, RpgPlayer, Components } from '@rpgjs/server'
 })
 export default class HunterEvent extends RpgEvent {
     onInit() {
-        this.setGraphic('richard')
-        this.setComponentsTop(Components.text('Anas Todkill'))
+        this.setGraphic('namontack-sprite')
+        this.setComponentsTop(Components.text('Namontack'))
     }
 
     async onAction(player: RpgPlayer) {

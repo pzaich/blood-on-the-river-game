@@ -6,7 +6,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 })
 export default class Mussel4Event extends RpgEvent {
     private collected = false
-    onInit() { this.setGraphic('barrel') }
+    onInit() { this.setGraphic('mussel-sprite') }
 
     async onAction(player: RpgPlayer) {
         if (this.collected) { await player.showText("Already collected."); return }

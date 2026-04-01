@@ -1,11 +1,11 @@
-import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
+import { RpgEvent, EventData, RpgPlayer, Components } from '@rpgjs/server'
 
 @EventData({
     name: 'namontack',
     hitbox: { width: 32, height: 16 }
 })
 export default class NamontackEvent extends RpgEvent {
-    onInit() { this.setGraphic('richard') }
+    onInit() { this.setGraphic('namontack-sprite'); this.setComponentsTop(Components.text('Namontack')) }
 
     async onAction(player: RpgPlayer) {
         const quest = player.getVariable('current_quest')
