@@ -6,7 +6,7 @@ import { RpgEvent, EventData, RpgPlayer, Components } from '@rpgjs/server'
 })
 export default class KantaEvent extends RpgEvent {
     onInit() {
-        this.setGraphic('namontack-sprite')
+        this.setGraphic('powhatan')
         this.setComponentsTop(Components.text('Kanta'))
     }
 

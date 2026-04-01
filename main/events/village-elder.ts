@@ -5,7 +5,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
     hitbox: { width: 24, height: 16 }
 })
 export default class VillageElderEvent extends RpgEvent {
-    onInit() { this.setGraphic('hunt') }
+    onInit() { this.setGraphic('powhatan') }
 
     async onAction(player: RpgPlayer) {
         if (player.getVariable('quest_4c') !== 'active') {
