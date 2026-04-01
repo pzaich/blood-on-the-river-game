@@ -108,7 +108,7 @@ features[11][14] = HO
 features[13][12] = WT
 
 // Campfire (center)
-features[9][12] = CF
+features[10][14] = CF  // campfire offset from player start
 
 // Well
 features[7][12] = WL

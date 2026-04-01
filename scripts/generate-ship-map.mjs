@@ -36,9 +36,9 @@ const RA = 11      // rail (wall)
 const BW = 30      // bow (corner wall)
 const ST = 30      // stern (corner wall)
 const SR = 3       // stairs (walkable deck)
-const CN = 24      // cannon (repurpose cannon tile 23+1=24)
-const CR = 21      // crate
-const BR = 22      // barrel
+const CN = 3       // cannon position (just deck - cannon is an NPC event)
+const CR = 3       // crate position (just deck - crate is an NPC event)
+const BR = 3       // barrel position (just deck - barrel is an NPC event)
 const SL = 3       // sail area (just deck)
 const HL = 11      // hull left
 const HR = 11      // hull right
@@ -51,11 +51,11 @@ const BR2 = 30     // corner bottom-right
 const DL = 3       // deck light (wood planks)
 const DD = 3       // deck dark (same planks)
 const HA = 12      // hatch (gate - opening)
-const WH = 28      // wheel (dense forest as dark circle - placeholder)
-const LN = 21      // lantern (barrel as placeholder)
-const AN = 26      // anchor (sign)
-const FL = 16      // flag (tower tile with red flag)
-const BF = 8       // below deck floor (dark planks = tile 8 = mud/dark)
+const WH = 3       // wheel area (just deck)
+const LN = 3       // lantern area (just deck)
+const AN = 3       // anchor area (just deck)
+const FL = 16      // flag (tower tile with English flag)
+const BF = 8       // below deck floor (TMX 8 = tileset id 7 = dark floor)
 
 function encodeTiles(grid) {
   const height = grid.length
@@ -197,6 +197,9 @@ const objects = [
   { id: 16, name: 'barrel-6', x: 9 * 32, y: 12 * 32 },
   // James (below deck)
   { id: 17, name: 'james', x: 10 * 32, y: 22 * 32 },
+  // Animals below deck (ships carried livestock to Virginia)
+  { id: 18, name: 'chicken', x: 14 * 32, y: 24 * 32 },
+  { id: 19, name: 'pig', x: 9 * 32, y: 23 * 32 },
 ]
 
 const objectXml = objects.map(obj =>

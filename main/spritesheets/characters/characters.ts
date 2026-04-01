@@ -94,6 +94,20 @@ export class RabbitSprite {}
 export class BerrySprite {}
 
 @Spritesheet({
+    id: 'chicken-sprite',
+    image: require('./chicken.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class ChickenSprite {}
+
+@Spritesheet({
+    id: 'pig-sprite',
+    image: require('./pig.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class PigSprite {}
+
+@Spritesheet({
     id: 'hero',
     image: require('./hero.png'),
     ...RMSpritesheet(3, 4)
