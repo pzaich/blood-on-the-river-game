@@ -6,8 +6,8 @@ import { RpgEvent, EventData, RpgPlayer, Components } from '@rpgjs/server'
 })
 export default class HunterEvent extends RpgEvent {
     onInit() {
-        this.setGraphic('namontack-sprite')
-        this.setComponentsTop(Components.text('Namontack'))
+        this.setGraphic('samuel')
+        this.setComponentsTop(Components.text('Namontack (Hunter)'))
     }
 
     async onAction(player: RpgPlayer) {
@@ -33,27 +33,27 @@ export default class HunterEvent extends RpgEvent {
 
         if (q3a === 'active') {
             const hits = player.getVariable('quest_3a_hits') || 0
-            if (hits >= 3) {
-                await player.showText("Good swordsmanship! Now let's try the musket.", { talkWith: this })
+            if (hits >= 6) {
+                await player.showText("Amazing swordsmanship! You hit all 6 targets! Now let's try the musket.", { talkWith: this })
                 player.setVariable('quest_3a', 'complete')
                 player.setVariable('quest_3b', 'active')
                 player.setVariable('quest_3b_hits', 0)
             } else {
-                await player.showText(`Chase the moving targets and hit them! (${hits}/3)`, { talkWith: this })
+                await player.showText(`Chase ALL the moving targets and hit each one! (${hits}/6)`, { talkWith: this })
             }
             return
         }
 
         if (q3b === 'active') {
             const hits = player.getVariable('quest_3b_hits') || 0
-            if (hits >= 3) {
-                await player.showText("Fine shooting! Now gather food. Collect 5 mussels and 5 crabs from the shore.", { talkWith: this })
+            if (hits >= 6) {
+                await player.showText("Fine shooting! All 6 targets down! Now gather food. Collect 5 mussels and 5 crabs from the shore.", { talkWith: this })
                 player.setVariable('quest_3b', 'complete')
                 player.setVariable('quest_3c', 'active')
                 player.setVariable('quest_3_mussels', 0)
                 player.setVariable('quest_3_crabs', 0)
             } else {
-                await player.showText(`Chase the targets and shoot! (${hits}/3)`, { talkWith: this })
+                await player.showText(`Shoot ALL the moving targets! (${hits}/6)`, { talkWith: this })
             }
             return
         }
