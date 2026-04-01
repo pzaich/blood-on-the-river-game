@@ -9,5 +9,5 @@ modules = [
 
 [start]
     map = 'ship'
-    graphic = 'hero'
+    graphic = 'samuel'
     hitbox = [16, 16]

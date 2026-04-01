@@ -12,7 +12,7 @@ export default class Barrel2Event extends RpgEvent {
     private stormInterval: any = null
 
     onInit() {
-        this.setGraphic('hero')
+        this.setGraphic('barrel')
         this.speed = 5
     }
 

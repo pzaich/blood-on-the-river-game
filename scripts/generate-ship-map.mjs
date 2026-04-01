@@ -174,10 +174,10 @@ const objects = [
   { id: 2, name: 'captain-smith', x: 10 * 32, y: 5 * 32 },
   // Reverend Hunt (upper deck, near stern)
   { id: 3, name: 'reverend-hunt', x: 14 * 32, y: 12 * 32 },
-  // Supply crates (scattered on upper deck)
-  { id: 4, name: 'supply-crate-1', x: 8 * 32, y: 7 * 32 },
-  { id: 5, name: 'supply-crate-2', x: 15 * 32, y: 10 * 32 },
-  { id: 6, name: 'supply-crate-3', x: 17 * 32, y: 6 * 32 },
+  // Supply crates (hidden in tricky spots)
+  { id: 4, name: 'supply-crate-1', x: 7 * 32, y: 4 * 32 },   // tucked at the narrow bow
+  { id: 5, name: 'supply-crate-2', x: 18 * 32, y: 11 * 32 },  // behind rail near stern
+  { id: 6, name: 'supply-crate-3', x: 15 * 32, y: 23 * 32 },  // hidden below deck near barrels
   // Richard Mutton (below deck)
   { id: 7, name: 'richard-mutton', x: 12 * 32, y: 20 * 32 },
   // Barrels (storm obstacles on upper deck)

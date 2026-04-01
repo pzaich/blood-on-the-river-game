@@ -9,7 +9,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 })
 export default class RichardMuttonEvent extends RpgEvent {
     onInit() {
-        this.setGraphic('hero') // placeholder sprite
+        this.setGraphic('richard')
     }
 
     async onAction(player: RpgPlayer) {

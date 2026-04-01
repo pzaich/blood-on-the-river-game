@@ -9,7 +9,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 })
 export default class CaptainSmithEvent extends RpgEvent {
     onInit() {
-        this.setGraphic('female') // placeholder sprite - will replace later
+        this.setGraphic('smith')
     }
 
     async onAction(player: RpgPlayer) {

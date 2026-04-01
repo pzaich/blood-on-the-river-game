@@ -11,7 +11,7 @@ export default class SupplyCrate1Event extends RpgEvent {
     collected = false
 
     onInit() {
-        this.setGraphic('hero')
+        this.setGraphic('crate')
     }
 
     async onAction(player: RpgPlayer) {
