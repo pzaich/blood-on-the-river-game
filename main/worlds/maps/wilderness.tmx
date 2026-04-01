@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="44">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="45">
  <tileset firstgid="1" source="ship-tiles.tsx"/>
  <layer id="1" name="Ground" width="20" height="20">
   <data encoding="base64">
@@ -130,6 +130,9 @@
    <point/>
   </object>
   <object id="43" name="carrot-3" x="320" y="384">
+   <point/>
+  </object>
+  <object id="44" name="deer-2" x="160" y="384">
    <point/>
   </object>
   <object id="24" name="berry-1" x="192" y="160">

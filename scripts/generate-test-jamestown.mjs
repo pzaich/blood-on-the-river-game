@@ -305,6 +305,8 @@ const wildTmx = makeMap('wilderness', 20, 20,
     { id: 41, name: 'carrot-1', x: 11 * 32, y: 4 * 32 },
     { id: 42, name: 'carrot-2', x: 13 * 32, y: 7 * 32 },
     { id: 43, name: 'carrot-3', x: 10 * 32, y: 12 * 32 },
+    // Second deer
+    { id: 44, name: 'deer-2', x: 5 * 32, y: 12 * 32 },
     { id: 24, name: 'berry-1', x: 6 * 32, y: 5 * 32 },
     { id: 25, name: 'berry-2', x: 8 * 32, y: 8 * 32 },
     { id: 26, name: 'berry-3', x: 7 * 32, y: 12 * 32 },
