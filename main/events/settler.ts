@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 
 @EventData({
     name: 'settler',
-    hitbox: { width: 16, height: 16 }
+    hitbox: { width: 24, height: 16 }
 })
 export default class SettlerEvent extends RpgEvent {
     onInit() { this.setGraphic('female') }

@@ -1,14 +1,19 @@
-import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
+import { RpgEvent, EventData, RpgPlayer, Move } from '@rpgjs/server'
 
 @EventData({
     name: 'target-2',
-    hitbox: { width: 16, height: 16 }
+    hitbox: { width: 24, height: 16 }
 })
 export default class Target2Event extends RpgEvent {
     private hitCooldown = false
 
     onInit() {
-        this.setGraphic('crate') // placeholder
+        this.setGraphic('crate')
+        this.speed = 4
+
+        setInterval(async () => {
+            try { await this.moveRoutes([Move.tileRandom(1)]) } catch {}
+        }, 1000)
     }
 
     async onAction(player: RpgPlayer) {
@@ -22,15 +27,15 @@ export default class Target2Event extends RpgEvent {
         if (q3a === 'active') {
             const hits = (player.getVariable('quest_3a_hits') || 0) + 1
             player.setVariable('quest_3a_hits', hits)
-            player.showNotification(`Sword hit! (${hits}/2)`, { time: 1500 })
-            if (hits >= 2) player.showNotification("Sword training done! Talk to the hunter.", { time: 3000 })
+            player.showNotification(`Sword hit! (${hits}/3)`, { time: 1500 })
+            if (hits >= 3) player.showNotification("Sword training done! Talk to Namontack.", { time: 3000 })
         } else if (q3b === 'active') {
             const hits = (player.getVariable('quest_3b_hits') || 0) + 1
             player.setVariable('quest_3b_hits', hits)
-            player.showNotification(`Musket hit! (${hits}/2)`, { time: 1500 })
-            if (hits >= 2) player.showNotification("Musket training done! Talk to the hunter.", { time: 3000 })
+            player.showNotification(`Musket hit! (${hits}/3)`, { time: 1500 })
+            if (hits >= 3) player.showNotification("Musket training done! Talk to Namontack.", { time: 3000 })
         } else {
-            await player.showText("A training target.")
+            await player.showText("A fast-moving training target. Catch it!")
         }
     }
 }

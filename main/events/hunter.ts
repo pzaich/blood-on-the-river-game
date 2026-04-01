@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer, Components } from '@rpgjs/server'
 
 @EventData({
     name: 'hunter',
-    hitbox: { width: 16, height: 16 }
+    hitbox: { width: 24, height: 16 }
 })
 export default class HunterEvent extends RpgEvent {
     onInit() {
@@ -33,27 +33,27 @@ export default class HunterEvent extends RpgEvent {
 
         if (q3a === 'active') {
             const hits = player.getVariable('quest_3a_hits') || 0
-            if (hits >= 2) {
+            if (hits >= 3) {
                 await player.showText("Good swordsmanship! Now let's try the musket.", { talkWith: this })
                 player.setVariable('quest_3a', 'complete')
                 player.setVariable('quest_3b', 'active')
                 player.setVariable('quest_3b_hits', 0)
             } else {
-                await player.showText(`Hit the training targets with your sword! (${hits}/2)`, { talkWith: this })
+                await player.showText(`Chase the moving targets and hit them! (${hits}/3)`, { talkWith: this })
             }
             return
         }
 
         if (q3b === 'active') {
             const hits = player.getVariable('quest_3b_hits') || 0
-            if (hits >= 2) {
+            if (hits >= 3) {
                 await player.showText("Fine shooting! Now gather food. Collect 5 mussels and 5 crabs from the shore.", { talkWith: this })
                 player.setVariable('quest_3b', 'complete')
                 player.setVariable('quest_3c', 'active')
                 player.setVariable('quest_3_mussels', 0)
                 player.setVariable('quest_3_crabs', 0)
             } else {
-                await player.showText(`Hit the targets again — this time imagine a musket! (${hits}/2)`, { talkWith: this })
+                await player.showText(`Chase the targets and shoot! (${hits}/3)`, { talkWith: this })
             }
             return
         }

@@ -261,7 +261,7 @@ const wildTmx = makeMap('wilderness', 20, 20,
   },
   [
     { id: 1, name: 'from-jamestown', class: 'start', x: 2 * 32, y: 10 * 32 },
-    { id: 2, name: 'hunter', x: 10 * 32, y: 14 * 32 },
+    { id: 2, name: 'hunter', x: 8 * 32, y: 10 * 32 },  // moved to clearing center
     { id: 3, name: 'mussel-1', x: 16 * 32, y: 3 * 32 },
     { id: 4, name: 'mussel-2', x: 16 * 32, y: 6 * 32 },
     { id: 5, name: 'mussel-3', x: 16 * 32, y: 9 * 32 },
@@ -272,16 +272,20 @@ const wildTmx = makeMap('wilderness', 20, 20,
     { id: 10, name: 'crab-3', x: 15 * 32, y: 10 * 32 },
     { id: 11, name: 'crab-4', x: 15 * 32, y: 13 * 32 },
     { id: 12, name: 'crab-5', x: 15 * 32, y: 16 * 32 },
-    { id: 13, name: 'rabbit-1', x: 4 * 32, y: 4 * 32 },
-    { id: 14, name: 'rabbit-2', x: 3 * 32, y: 8 * 32 },
+    { id: 13, name: 'rabbit-1', x: 7 * 32, y: 4 * 32 },   // moved off trees
+    { id: 14, name: 'rabbit-2', x: 6 * 32, y: 8 * 32 },   // moved off trees
     { id: 15, name: 'rabbit-3', x: 5 * 32, y: 14 * 32 },
     { id: 16, name: 'deer-1', x: 3 * 32, y: 6 * 32 },
-    { id: 17, name: 'target-1', x: 10 * 32, y: 16 * 32 },
-    { id: 18, name: 'target-2', x: 12 * 32, y: 16 * 32 },
-    { id: 19, name: 'to-jamestown', x: 1 * 32, y: 10 * 32 },
-    { id: 20, name: 'berry-1', x: 6 * 32, y: 5 * 32 },
-    { id: 21, name: 'berry-2', x: 8 * 32, y: 8 * 32 },
-    { id: 22, name: 'berry-3', x: 7 * 32, y: 12 * 32 },
+    { id: 17, name: 'target-1', x: 8 * 32, y: 14 * 32 },
+    { id: 18, name: 'target-2', x: 10 * 32, y: 14 * 32 },
+    { id: 19, name: 'target-3', x: 12 * 32, y: 14 * 32 },
+    { id: 20, name: 'target-4', x: 9 * 32, y: 16 * 32 },
+    { id: 21, name: 'target-5', x: 11 * 32, y: 16 * 32 },
+    { id: 22, name: 'target-6', x: 13 * 32, y: 16 * 32 },
+    { id: 23, name: 'to-jamestown', x: 1 * 32, y: 10 * 32 },
+    { id: 24, name: 'berry-1', x: 6 * 32, y: 5 * 32 },
+    { id: 25, name: 'berry-2', x: 8 * 32, y: 8 * 32 },
+    { id: 26, name: 'berry-3', x: 7 * 32, y: 12 * 32 },
   ]
 )
 

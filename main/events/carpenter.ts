@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer, Components } from '@rpgjs/server'
 
 @EventData({
     name: 'carpenter',
-    hitbox: { width: 16, height: 16 }
+    hitbox: { width: 24, height: 16 }
 })
 export default class CarpenterEvent extends RpgEvent {
     onInit() {

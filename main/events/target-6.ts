@@ -1,19 +1,19 @@
 import { RpgEvent, EventData, RpgPlayer, Move } from '@rpgjs/server'
 
 @EventData({
-    name: 'target-1',
+    name: 'target-6',
     hitbox: { width: 24, height: 16 }
 })
-export default class Target1Event extends RpgEvent {
+export default class Target6Event extends RpgEvent {
     private hitCooldown = false
 
     onInit() {
         this.setGraphic('crate')
-        this.speed = 3
+        this.speed = 7
 
         setInterval(async () => {
             try { await this.moveRoutes([Move.tileRandom(1)]) } catch {}
-        }, 1200)
+        }, 800)
     }
 
     async onAction(player: RpgPlayer) {
@@ -35,7 +35,7 @@ export default class Target1Event extends RpgEvent {
             player.showNotification(`Musket hit! (${hits}/3)`, { time: 1500 })
             if (hits >= 3) player.showNotification("Musket training done! Talk to Namontack.", { time: 3000 })
         } else {
-            await player.showText("A moving training target. Chase it!")
+            await player.showText("A fast-moving training target!")
         }
     }
 }

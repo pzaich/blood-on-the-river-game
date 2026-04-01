@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer, Components } from '@rpgjs/server'
 
 @EventData({
     name: 'namontack-jt',
-    hitbox: { width: 16, height: 16 }
+    hitbox: { width: 24, height: 16 }
 })
 export default class NamontackJTEvent extends RpgEvent {
     onInit() { this.setGraphic('namontack-sprite'); this.setComponentsTop(Components.text('Namontack')) }
