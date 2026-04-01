@@ -192,7 +192,7 @@ const objectXml = objects.map(obj =>
 
 const tmx = `<?xml version="1.0" encoding="UTF-8"?>
 <map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="${W}" height="${H}" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="${maxId + 1}">
- <tileset firstgid="1" source="ship-tiles.tsx"/>
+ <tileset firstgid="1" source="jamestown-tiles.tsx"/>
  <layer id="1" name="Ground" width="${W}" height="${H}">
   <data encoding="base64">
    ${encodeTiles(ground)}
@@ -219,7 +219,7 @@ function makeMap(name, w, h, groundFn, featuresFn, objList) {
   ).join('\n')
   return `<?xml version="1.0" encoding="UTF-8"?>
 <map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="${w}" height="${h}" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="${mid + 1}">
- <tileset firstgid="1" source="ship-tiles.tsx"/>
+ <tileset firstgid="1" source="jamestown-tiles.tsx"/>
  <layer id="1" name="Ground" width="${w}" height="${h}">
   <data encoding="base64">
    ${encodeTiles(g)}
