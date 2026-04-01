@@ -246,7 +246,7 @@
                 <button onclick="localStorage.setItem('storm-active','false')">Storm OFF</button>
             </div>
 
-            <h4>Live Variables</h4>
+            <h4>Live Variables <button onclick="dbgCopyVars()" style="font-size:9px">Copy</button></h4>
             <pre id="dbg-vars" style="font-size:10px;max-height:150px;overflow:auto;background:#111;padding:4px;margin:4px 0;">Loading...</pre>
         </div>
     </div>
@@ -394,19 +394,34 @@
             console.log('Jumped to', preset);
         }
 
+        const DBG_KEYS = [
+            'current_quest', 'quest_1a', 'quest_1b', 'quest_1b_crates',
+            'quest_1c', 'storm_hits', 'quest_1d', 'richard_friend', 'AFTER_INTRO'
+        ];
+
+        function dbgCopyVars() {
+            const p = dbgGetPlayer();
+            if (!p) return;
+            const obj = {};
+            DBG_KEYS.forEach(k => { const v = p.getVariable(k); if (v !== undefined) obj[k] = v; });
+            const map = (p.map && p.map.id) || '?';
+            const text = `map: ${map}\n` + JSON.stringify(obj, null, 2);
+            navigator.clipboard.writeText(text).then(() => {
+                document.getElementById('dbg-vars').textContent = '✓ Copied!';
+            });
+        }
+
         // Live variable display
         setInterval(() => {
             const p = dbgGetPlayer();
             const el = document.getElementById('dbg-vars');
             if (!p || !el) return;
-            const keys = [
-                'current_quest', 'quest_1a', 'quest_1b', 'quest_1b_crates',
-                'quest_1c', 'storm_hits', 'quest_1d', 'richard_friend', 'AFTER_INTRO'
-            ];
-            const lines = keys.map(k => {
+            const lines = DBG_KEYS.map(k => {
                 const v = p.getVariable(k);
                 return `${k}: ${v === undefined ? '—' : JSON.stringify(v)}`;
             });
+            const map = (p.map && p.map.id) || '?';
+            lines.unshift(`map: ${map}`);
             el.textContent = lines.join('\n');
         }, 500);
     </script>
