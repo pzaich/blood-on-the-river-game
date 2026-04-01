@@ -200,6 +200,8 @@ const objects = [
   // Animals below deck (ships carried livestock to Virginia)
   { id: 18, name: 'chicken', x: 14 * 32, y: 24 * 32 },
   { id: 19, name: 'pig', x: 9 * 32, y: 23 * 32 },
+  { id: 20, name: 'chicken-2', x: 12 * 32, y: 25 * 32 },
+  { id: 21, name: 'pig-2', x: 15 * 32, y: 22 * 32 },
 ]
 
 const objectXml = objects.map(obj =>
