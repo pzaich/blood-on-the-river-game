@@ -1,4 +1,4 @@
-import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
+import { RpgEvent, EventData, RpgPlayer, Move } from '@rpgjs/server'
 
 @EventData({
     name: 'barrel-6',
@@ -6,15 +6,36 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 })
 export default class Barrel6Event extends RpgEvent {
     private hitCooldown = false
-    onInit() { this.setGraphic('barrel'); this.speed = 5 }
-    async onAction(player: RpgPlayer) { await player.showText("A heavy barrel.") }
+
+    onInit() {
+        this.setGraphic('barrel')
+        this.speed = 8
+
+        // Move randomly during storm — check localStorage flag
+        setInterval(async () => {
+            try {
+                if (typeof localStorage !== 'undefined' && localStorage.getItem('storm-active') === 'true') {
+                    await this.moveRoutes([Move.tileRandom(2)])
+                }
+            } catch {}
+        }, 900)
+    }
+
+    async onAction(player: RpgPlayer) {
+        await player.showText("A heavy barrel.")
+    }
+
     async onPlayerTouch(player: RpgPlayer) {
         if (player.getVariable('quest_1c') !== 'active') return
         if (this.hitCooldown) return
+
         this.hitCooldown = true
         setTimeout(() => { this.hitCooldown = false }, 2000)
+
         const hits = (player.getVariable('storm_hits') || 0) + 1
         player.setVariable('storm_hits', hits)
+        if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'hit')
+
         if (hits >= 3) {
             player.setVariable('storm_hits', 0)
             if (typeof localStorage !== 'undefined') localStorage.setItem('storm-active', 'false')
