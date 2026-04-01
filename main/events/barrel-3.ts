@@ -1,20 +1,20 @@
 import { RpgEvent, EventData, RpgPlayer, Move } from '@rpgjs/server'
 
 @EventData({
-    name: 'barrel-1',
+    name: 'barrel-3',
     hitbox: {
         width: 32,
         height: 16
     }
 })
-export default class Barrel1Event extends RpgEvent {
+export default class Barrel3Event extends RpgEvent {
     private moving = false
     private stormInterval: any = null
     private hitCooldown = false
 
     onInit() {
         this.setGraphic('barrel')
-        this.speed = 3
+        this.speed = 5
     }
 
     onChanges(player: RpgPlayer) {
@@ -32,8 +32,8 @@ export default class Barrel1Event extends RpgEvent {
     private startSliding() {
         this.stormInterval = setInterval(async () => {
             if (!this.moving) return
-            try { await this.moveRoutes([Move.tileRandom(2)]) } catch {}
-        }, 900)
+            try { await this.moveRoutes([Move.tileRandom(3)]) } catch {}
+        }, 600)
     }
 
     private stopSliding() {
