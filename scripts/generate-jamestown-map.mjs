@@ -173,6 +173,11 @@ const objects = [
 
   // Lookout tower site (south, near river)
   { id: 35, name: 'lookout-site', x: 15 * 32, y: 19 * 32 },
+
+  // Quest 5 NPCs
+  { id: 36, name: 'namontack-jt', x: 14 * 32, y: 3 * 32 },     // Namontack at north gate
+  { id: 37, name: 'settler', x: 10 * 32, y: 12 * 32 },          // Settler in clearing
+  { id: 38, name: 'lookout-defend', x: 15 * 32, y: 18 * 32 },   // Lookout defense point
 ]
 
 const objectXml = objects.map(obj =>
