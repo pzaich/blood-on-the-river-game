@@ -7,8 +7,10 @@ const player: RpgPlayerHooks = {
         player.name = 'Samuel'
         player.setComponentsTop(Components.text('{name}'))
 
-        // Try to load saved game from variable (set via client-side GUI later)
-        // For now, fresh start each time
+        // Expose player to debug panel (dev mode only)
+        if (typeof window !== 'undefined') {
+            ;(window as any).__PLAYER__ = player
+        }
     },
 
     onInput(player: RpgPlayer, { input }) {

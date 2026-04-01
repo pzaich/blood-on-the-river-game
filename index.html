@@ -168,13 +168,140 @@
         }
     </style>
 
+    <!-- Debug Panel (dev mode only) -->
+    <div id="debug-panel">
+        <div id="debug-toggle" onclick="document.getElementById('debug-panel').classList.toggle('open')">DEBUG</div>
+        <div id="debug-content">
+            <h3>Quest State</h3>
+            <div class="debug-section">
+                <label>Current Quest</label>
+                <select id="dbg-current-quest" onchange="dbgSet('current_quest', +this.value)">
+                    <option value="0">0 - Not started</option>
+                    <option value="1">1 - Voyage</option>
+                    <option value="2">2 - Building</option>
+                    <option value="3">3 - Hunting</option>
+                    <option value="4">4 - Powhatan</option>
+                    <option value="5">5 - Finale</option>
+                </select>
+            </div>
+
+            <h4>Quest 1: Voyage</h4>
+            <div class="debug-section">
+                <label>1a Meet Smith</label>
+                <select onchange="dbgSet('quest_1a', this.value)">
+                    <option value="">—</option>
+                    <option value="active">active</option>
+                    <option value="complete">complete</option>
+                </select>
+            </div>
+            <div class="debug-section">
+                <label>1b Crates</label>
+                <select onchange="dbgSet('quest_1b', this.value)">
+                    <option value="">—</option>
+                    <option value="active">active</option>
+                    <option value="complete">complete</option>
+                </select>
+                <input type="number" min="0" max="3" value="0" style="width:40px" onchange="dbgSet('quest_1b_crates', +this.value)" placeholder="crates">
+            </div>
+            <div class="debug-section">
+                <label>1c Storm</label>
+                <select onchange="dbgSet('quest_1c', this.value)">
+                    <option value="">—</option>
+                    <option value="active">active</option>
+                    <option value="survived">survived</option>
+                    <option value="complete">complete</option>
+                </select>
+                <input type="number" min="0" max="3" value="0" style="width:40px" onchange="dbgSet('storm_hits', +this.value)" placeholder="hits">
+            </div>
+            <div class="debug-section">
+                <label>1d Friend</label>
+                <select onchange="dbgSet('quest_1d', this.value)">
+                    <option value="">—</option>
+                    <option value="active">active</option>
+                    <option value="complete">complete</option>
+                </select>
+            </div>
+
+            <h4>Quick Jump</h4>
+            <div class="debug-section">
+                <button onclick="dbgJumpTo('quest1-start')">Q1 Start</button>
+                <button onclick="dbgJumpTo('quest1-crates')">Q1 Crates</button>
+                <button onclick="dbgJumpTo('quest1-storm')">Q1 Storm</button>
+                <button onclick="dbgJumpTo('quest1-friend')">Q1 Friend</button>
+                <button onclick="dbgJumpTo('quest1-done')">Q1 Done</button>
+                <button onclick="dbgJumpTo('quest2-start')">Q2 Start</button>
+            </div>
+
+            <h4>Map</h4>
+            <div class="debug-section">
+                <button onclick="dbgChangeMap('ship')">Ship</button>
+                <button onclick="dbgChangeMap('jamestown')">Jamestown</button>
+                <button onclick="dbgChangeMap('wilderness')">Wilderness</button>
+                <button onclick="dbgChangeMap('powhatan-village')">Powhatan</button>
+            </div>
+
+            <h4>Storm FX</h4>
+            <div class="debug-section">
+                <button onclick="localStorage.setItem('storm-active','true')">Storm ON</button>
+                <button onclick="localStorage.setItem('storm-active','false')">Storm OFF</button>
+            </div>
+
+            <h4>Live Variables</h4>
+            <pre id="dbg-vars" style="font-size:10px;max-height:150px;overflow:auto;background:#111;padding:4px;margin:4px 0;">Loading...</pre>
+        </div>
+    </div>
+
+    <style>
+        /* ===== DEBUG PANEL ===== */
+        #debug-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            z-index: 10000;
+            font-family: monospace;
+            font-size: 11px;
+            color: #0f0;
+            pointer-events: auto;
+        }
+        #debug-toggle {
+            background: #222;
+            color: #0f0;
+            padding: 4px 10px;
+            cursor: pointer;
+            text-align: center;
+            border: 1px solid #0f0;
+            user-select: none;
+        }
+        #debug-content {
+            display: none;
+            background: rgba(0,0,0,0.92);
+            border: 1px solid #0f0;
+            padding: 8px;
+            width: 260px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        #debug-panel.open #debug-content { display: block; }
+        #debug-content h3 { margin: 0 0 6px; font-size: 13px; color: #0f0; }
+        #debug-content h4 { margin: 8px 0 4px; font-size: 11px; color: #0a0; border-top: 1px solid #333; padding-top: 4px; }
+        .debug-section { margin: 2px 0; display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+        .debug-section label { width: 80px; flex-shrink: 0; color: #888; }
+        .debug-section select, .debug-section input {
+            background: #111; color: #0f0; border: 1px solid #333;
+            padding: 2px; font-family: monospace; font-size: 10px;
+        }
+        .debug-section button {
+            background: #222; color: #0f0; border: 1px solid #0a0;
+            padding: 2px 6px; cursor: pointer; font-family: monospace; font-size: 10px;
+        }
+        .debug-section button:hover { background: #0a0; color: #000; }
+    </style>
+
     <script>
         // Storm effect controller
-        // Polls localStorage for storm state (set by game engine)
         (function() {
             const overlay = document.getElementById('storm-overlay');
             const rpg = document.getElementById('rpg');
-
             setInterval(() => {
                 const stormActive = localStorage.getItem('storm-active') === 'true';
                 if (stormActive) {
@@ -186,6 +313,102 @@
                 }
             }, 200);
         })();
+
+        // Debug panel functions
+        function dbgGetPlayer() {
+            return window.__PLAYER__;
+        }
+
+        function dbgSet(key, value) {
+            const p = dbgGetPlayer();
+            if (!p) { console.warn('Player not ready'); return; }
+            p.setVariable(key, value);
+            console.log('Set', key, '=', value);
+        }
+
+        function dbgChangeMap(mapName) {
+            const p = dbgGetPlayer();
+            if (!p) { console.warn('Player not ready'); return; }
+            p.changeMap(mapName);
+        }
+
+        function dbgJumpTo(preset) {
+            const p = dbgGetPlayer();
+            if (!p) { console.warn('Player not ready'); return; }
+
+            // Reset all quest vars first
+            const vars = [
+                'current_quest', 'quest_1a', 'quest_1b', 'quest_1b_crates',
+                'quest_1c', 'storm_hits', 'quest_1d', 'richard_friend', 'AFTER_INTRO'
+            ];
+            vars.forEach(v => p.setVariable(v, undefined));
+            localStorage.setItem('storm-active', 'false');
+
+            switch(preset) {
+                case 'quest1-start':
+                    p.setVariable('quest_1a', 'active');
+                    p.changeMap('ship');
+                    break;
+                case 'quest1-crates':
+                    p.setVariable('quest_1a', 'complete');
+                    p.setVariable('quest_1b', 'active');
+                    p.setVariable('quest_1b_crates', 0);
+                    p.setVariable('current_quest', 1);
+                    p.changeMap('ship');
+                    break;
+                case 'quest1-storm':
+                    p.setVariable('quest_1a', 'complete');
+                    p.setVariable('quest_1b', 'complete');
+                    p.setVariable('quest_1c', 'active');
+                    p.setVariable('storm_hits', 0);
+                    p.setVariable('current_quest', 1);
+                    localStorage.setItem('storm-active', 'true');
+                    p.changeMap('ship');
+                    break;
+                case 'quest1-friend':
+                    p.setVariable('quest_1a', 'complete');
+                    p.setVariable('quest_1b', 'complete');
+                    p.setVariable('quest_1c', 'complete');
+                    p.setVariable('quest_1d', 'active');
+                    p.setVariable('current_quest', 1);
+                    p.changeMap('ship');
+                    break;
+                case 'quest1-done':
+                    p.setVariable('quest_1a', 'complete');
+                    p.setVariable('quest_1b', 'complete');
+                    p.setVariable('quest_1c', 'complete');
+                    p.setVariable('quest_1d', 'complete');
+                    p.setVariable('richard_friend', true);
+                    p.setVariable('current_quest', 1);
+                    p.changeMap('ship');
+                    break;
+                case 'quest2-start':
+                    p.setVariable('quest_1a', 'complete');
+                    p.setVariable('quest_1b', 'complete');
+                    p.setVariable('quest_1c', 'complete');
+                    p.setVariable('quest_1d', 'complete');
+                    p.setVariable('current_quest', 2);
+                    p.changeMap('jamestown');
+                    break;
+            }
+            console.log('Jumped to', preset);
+        }
+
+        // Live variable display
+        setInterval(() => {
+            const p = dbgGetPlayer();
+            const el = document.getElementById('dbg-vars');
+            if (!p || !el) return;
+            const keys = [
+                'current_quest', 'quest_1a', 'quest_1b', 'quest_1b_crates',
+                'quest_1c', 'storm_hits', 'quest_1d', 'richard_friend', 'AFTER_INTRO'
+            ];
+            const lines = keys.map(k => {
+                const v = p.getVariable(k);
+                return `${k}: ${v === undefined ? '—' : JSON.stringify(v)}`;
+            });
+            el.textContent = lines.join('\n');
+        }, 500);
     </script>
 </body>
 
