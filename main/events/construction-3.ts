@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 
 @EventData({
     name: 'construction-3',
-    hitbox: { width: 32, height: 16 }
+    hitbox: { width: 16, height: 16 }
 })
 export default class Construction3Event extends RpgEvent {
     private built = false

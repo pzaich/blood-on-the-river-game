@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer, Components } from '@rpgjs/server'
 
 @EventData({
     name: 'captain-smith-jt',
-    hitbox: { width: 32, height: 16 }
+    hitbox: { width: 16, height: 16 }
 })
 export default class CaptainSmithJTEvent extends RpgEvent {
     onInit() {

@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 
 @EventData({
     name: 'mussel-5',
-    hitbox: { width: 32, height: 16 }
+    hitbox: { width: 16, height: 16 }
 })
 export default class Mussel5Event extends RpgEvent {
     private collected = false

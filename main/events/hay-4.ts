@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 
 @EventData({
     name: 'hay-4',
-    hitbox: { width: 32, height: 16 }
+    hitbox: { width: 16, height: 16 }
 })
 export default class Hay4Event extends RpgEvent {
     private collected = false
