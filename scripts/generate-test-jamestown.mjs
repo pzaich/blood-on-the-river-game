@@ -176,10 +176,16 @@ const objects = [
   { id: 34, name: 'storehouse-site', x: 15 * 32, y: 7 * 32 },
   { id: 35, name: 'lookout-site', x: 12 * 32, y: 14 * 32 },
 
+  // House sites (4 houses to build in quest 2f)
+  { id: 36, name: 'house-site-1', x: 10 * 32, y: 7 * 32 },
+  { id: 37, name: 'house-site-2', x: 14 * 32, y: 7 * 32 },
+  { id: 38, name: 'house-site-3', x: 10 * 32, y: 11 * 32 },
+  { id: 39, name: 'house-site-4', x: 14 * 32, y: 11 * 32 },
+
   // Quest 5 NPCs
-  { id: 36, name: 'namontack-jt', x: 12 * 32, y: 2 * 32 },
-  { id: 37, name: 'settler', x: 10 * 32, y: 10 * 32 },
-  { id: 38, name: 'lookout-defend', x: 12 * 32, y: 13 * 32 },
+  { id: 40, name: 'namontack-jt', x: 12 * 32, y: 2 * 32 },
+  { id: 41, name: 'settler', x: 10 * 32, y: 10 * 32 },
+  { id: 42, name: 'lookout-defend', x: 12 * 32, y: 13 * 32 },
 ]
 
 const maxId = Math.max(...objects.map(o => o.id))
