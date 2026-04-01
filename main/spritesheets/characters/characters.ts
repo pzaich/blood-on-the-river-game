@@ -73,6 +73,27 @@ export class MusselSprite {}
 export class NamontackSprite {}
 
 @Spritesheet({
+    id: 'deer-sprite',
+    image: require('./deer.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class DeerSprite {}
+
+@Spritesheet({
+    id: 'rabbit-sprite',
+    image: require('./rabbit.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class RabbitSprite {}
+
+@Spritesheet({
+    id: 'berry-sprite',
+    image: require('./berry.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class BerrySprite {}
+
+@Spritesheet({
     id: 'hero',
     image: require('./hero.png'),
     ...RMSpritesheet(3, 4)

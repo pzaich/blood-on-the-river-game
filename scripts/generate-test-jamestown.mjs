@@ -273,6 +273,9 @@ const wildTmx = makeMap('wilderness', 20, 20,
     { id: 17, name: 'target-1', x: 10 * 32, y: 16 * 32 },
     { id: 18, name: 'target-2', x: 12 * 32, y: 16 * 32 },
     { id: 19, name: 'to-jamestown', x: 1 * 32, y: 10 * 32 },
+    { id: 20, name: 'berry-1', x: 6 * 32, y: 5 * 32 },
+    { id: 21, name: 'berry-2', x: 8 * 32, y: 8 * 32 },
+    { id: 22, name: 'berry-3', x: 7 * 32, y: 12 * 32 },
   ]
 )
 
