@@ -3,13 +3,21 @@
 
 <head>
     <meta charset="utf-8">
-    <title>RPG Game</title>
+    <title>Blood on the River</title>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimum-scale=1, width=device-width, height=device-height">
 </head>
 
 <body>
     <div id="rpg"></div>
-    
+
+    <!-- Storm overlay -->
+    <div id="storm-overlay" class="storm-hidden">
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="rain"></div>
+        <div class="lightning"></div>
+    </div>
+
     <style>
         body,
         html {
@@ -19,7 +27,7 @@
 
         body {
             margin: 0;
-            background-color: black; 
+            background-color: black;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -27,7 +35,6 @@
 
         #rpg {
             position: relative;
-            
         }
 
         @media (min-width: 800px) {
@@ -46,7 +53,140 @@
                 bottom: 0;
             }
         }
+
+        /* ===== STORM EFFECTS ===== */
+        #storm-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            transition: opacity 1s ease;
+        }
+
+        #storm-overlay.storm-hidden {
+            opacity: 0;
+            display: none;
+        }
+
+        #storm-overlay.storm-active {
+            opacity: 1;
+            display: block;
+        }
+
+        /* Dark overlay for stormy sky */
+        #storm-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 15, 30, 0.45);
+            z-index: 1;
+        }
+
+        /* Rain streaks */
+        .rain {
+            position: absolute;
+            top: -100%;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            z-index: 2;
+            background-image:
+                linear-gradient(transparent 90%, rgba(174, 194, 224, 0.4) 90%, rgba(174, 194, 224, 0.4) 91%, transparent 91%),
+                linear-gradient(transparent 85%, rgba(174, 194, 224, 0.3) 85%, rgba(174, 194, 224, 0.3) 86%, transparent 86%);
+            background-size: 3px 40px, 5px 55px;
+            animation: rain-fall linear infinite;
+        }
+
+        .rain:nth-child(1) {
+            animation-duration: 0.4s;
+            background-size: 2px 35px, 4px 50px;
+            opacity: 0.8;
+        }
+
+        .rain:nth-child(2) {
+            animation-duration: 0.55s;
+            background-size: 3px 42px, 5px 60px;
+            opacity: 0.6;
+            left: 10px;
+        }
+
+        .rain:nth-child(3) {
+            animation-duration: 0.35s;
+            background-size: 2px 30px, 3px 45px;
+            opacity: 0.9;
+            left: -5px;
+        }
+
+        @keyframes rain-fall {
+            0% {
+                transform: translateY(0) rotate(5deg);
+            }
+            100% {
+                transform: translateY(50%) rotate(5deg);
+            }
+        }
+
+        /* Lightning flash */
+        .lightning {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 3;
+            background: white;
+            opacity: 0;
+            animation: lightning-flash 4s infinite;
+        }
+
+        @keyframes lightning-flash {
+            0% { opacity: 0; }
+            1% { opacity: 0.6; }
+            2% { opacity: 0; }
+            3% { opacity: 0.3; }
+            4% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* Screen shake during storm */
+        #rpg.storm-shake {
+            animation: shake 0.3s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(-2px, 1px); }
+            50% { transform: translate(2px, -1px); }
+            75% { transform: translate(-1px, 2px); }
+            100% { transform: translate(1px, -2px); }
+        }
     </style>
+
+    <script>
+        // Storm effect controller
+        // Polls localStorage for storm state (set by game engine)
+        (function() {
+            const overlay = document.getElementById('storm-overlay');
+            const rpg = document.getElementById('rpg');
+
+            setInterval(() => {
+                const stormActive = localStorage.getItem('storm-active') === 'true';
+                if (stormActive) {
+                    overlay.className = 'storm-active';
+                    rpg.classList.add('storm-shake');
+                } else {
+                    overlay.className = 'storm-hidden';
+                    rpg.classList.remove('storm-shake');
+                }
+            }, 200);
+        })();
+    </script>
 </body>
 
 </html>

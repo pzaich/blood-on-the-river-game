@@ -18,17 +18,7 @@ const player: RpgPlayerHooks = {
     },
 
     async onJoinMap(player: RpgPlayer) {
-        if (player.getVariable('AFTER_INTRO')) {
-            return
-        }
-
-        const mapId = (player as any).map?.id || ''
-
-        if (mapId === 'ship') {
-            await player.showText("You are Samuel Collier, a young orphan from London.")
-            await player.showText("The year is 1607. You stand on the deck of the Susan Constant, bound for the New World.")
-            await player.showText("Captain John Smith is looking for a page. Find him on the upper deck!")
-            player.setVariable('AFTER_INTRO', true)
+        if (!player.getVariable('quest_1a')) {
             player.setVariable('quest_1a', 'active')
         }
     }

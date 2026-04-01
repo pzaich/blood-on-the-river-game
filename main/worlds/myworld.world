@@ -2,8 +2,8 @@
     "maps": [
         {
             "fileName": "maps/ship.tmx",
-            "height": 640,
-            "width": 640,
+            "height": 896,
+            "width": 768,
             "x": 0,
             "y": 0
         }

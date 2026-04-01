@@ -72,10 +72,25 @@ export default class CaptainSmithEvent extends RpgEvent {
                     talkWith: this
                 })
                 player.setVariable('quest_1b', 'complete')
+                player.setVariable('storm_hits', 0)
                 player.setVariable('quest_1c', 'active')
-                await player.showText("A storm is coming! Stay on the upper deck and dodge the sliding barrels!", {
+                // Activate storm visuals
+                if (typeof localStorage !== 'undefined') {
+                    localStorage.setItem('storm-active', 'true')
+                }
+                await player.showText("A storm is coming! Dodge the sliding barrels for 15 seconds!", {
                     talkWith: this
                 })
+                // End storm after 15 seconds
+                setTimeout(() => {
+                    const hits = player.getVariable('storm_hits') || 0
+                    if (hits < 3) {
+                        player.setVariable('quest_1c', 'survived')
+                    }
+                    if (typeof localStorage !== 'undefined') {
+                        localStorage.setItem('storm-active', 'false')
+                    }
+                }, 15000)
             } else {
                 await player.showText(`You've found ${crates} of 3 supply crates. Keep searching the deck!`, {
                     talkWith: this
@@ -84,9 +99,41 @@ export default class CaptainSmithEvent extends RpgEvent {
             return
         }
 
-        // Quest 1c: After storm
+        // Quest 1c: Storm — restart if barrels aren't moving (player failed)
         if (quest1c === 'active') {
-            await player.showText("The storm has passed. You have your sea legs now, Samuel!", {
+            const hits = player.getVariable('storm_hits') || 0
+            if (hits === 0) {
+                // Restart the storm
+                player.setVariable('storm_hits', 0)
+                if (typeof localStorage !== 'undefined') {
+                    localStorage.setItem('storm-active', 'true')
+                }
+                await player.showText("Brace yourself, Samuel! Here comes the storm again! Dodge the barrels!", {
+                    talkWith: this
+                })
+                setTimeout(() => {
+                    const h = player.getVariable('storm_hits') || 0
+                    if (h < 3) {
+                        player.setVariable('quest_1c', 'survived')
+                    }
+                    if (typeof localStorage !== 'undefined') {
+                        localStorage.setItem('storm-active', 'false')
+                    }
+                }, 15000)
+            } else {
+                await player.showText("Keep dodging, Samuel! The storm isn't over yet!", {
+                    talkWith: this
+                })
+            }
+            return
+        }
+
+        // Quest 1c: Survived the storm
+        if (quest1c === 'survived') {
+            if (typeof localStorage !== 'undefined') {
+                localStorage.setItem('storm-active', 'false')
+            }
+            await player.showText("The storm has passed! You have your sea legs now, Samuel!", {
                 talkWith: this
             })
             await player.showText("Go below deck and talk to the other boys. Make some friends for the journey.", {
