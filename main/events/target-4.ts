@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer, Move } from '@rpgjs/server'
 
 @EventData({
     name: 'target-4',
-    hitbox: { width: 24, height: 16 }
+    hitbox: { width: 8, height: 8 }
 })
 export default class Target4Event extends RpgEvent {
     private hitCooldown = false
