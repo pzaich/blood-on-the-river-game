@@ -13,30 +13,35 @@ Top-down Pokemon-style RPG based on the book "Blood on the River: James Town 160
 
 ## Key Commands
 ```bash
-npm run dev          # Start dev server (http://localhost:3000)
-npm run build        # Build: RPG_TYPE=rpg npm run build → dist/standalone/
-npm run preview      # Preview production build
+npm run dev          # Start dev server in RPG mode (http://localhost:3000)
+npm run build        # Build static RPG: dist/standalone/
 ```
 
 ## Project Structure
+RPG-JS v4 uses auto-discovery — files in `main/` are automatically loaded by convention.
 ```
-src/modules/main/
-├── server/
-│   ├── index.ts              # Module registration
-│   ├── player.ts             # Player init, quest state, save/load
-│   ├── maps/                 # Map TypeScript classes + tmx/ subfolder
-│   ├── events/
-│   │   ├── npcs/             # NPC dialogue and quest logic
-│   │   ├── interactables/    # Trees, crates, collection points
-│   │   └── creatures/        # Huntable animals
-│   └── database/
-│       ├── items.ts          # @Item decorators
-│       └── weapons.ts        # @Weapon decorators
-└── client/
-    ├── index.ts              # Client module + spritesheet registration
-    ├── characters/           # Character sprite PNGs (4x4 grids)
-    ├── tilesets/             # Terrain, buildings, objects PNGs
-    └── gui/                  # Vue components (quest log, inventory)
+main/
+├── player.ts                 # Player init, quest state, onJoinMap hooks
+├── events/                   # One file per NPC/interactable (auto-discovered)
+│   ├── captain-smith.ts      # @EventData name must match TMX object name
+│   ├── reverend-hunt.ts
+│   ├── richard-mutton.ts
+│   └── supply-crate-*.ts
+├── spritesheets/
+│   └── characters/
+│       ├── characters.ts     # @Spritesheet config (RMSpritesheet preset)
+│       ├── hero.png          # Player sprite (3 cols x 4 rows)
+│       └── female.png        # NPC placeholder sprite
+├── worlds/
+│   ├── myworld.world         # Tiled world file (map list)
+│   └── maps/                 # TMX maps + tileset PNGs/TSX files
+│       ├── ship.tmx          # Quest 1 map
+│       ├── jamestown.tmx     # Quest 2 & 5 map
+│       ├── wilderness.tmx    # Quest 3 map
+│       └── powhatan-village.tmx  # Quest 4 map
+scripts/
+└── generate-maps.mjs         # Node script to regenerate TMX maps
+rpg.toml                      # Game config (start map, modules, hitbox)
 ```
 
 ## Architecture Decisions
@@ -54,23 +59,22 @@ src/modules/main/
 - Load on game start: `localStorage.getItem()` → `player.load()`
 
 ### Maps
-- Created in Tiled Map Editor, exported as TMX
-- Each map has a TypeScript class with `@MapData` decorator
-- Collisions set via tile properties or object layers in Tiled
-- Maps connect via edges/doors (player teleport events)
+- 4 maps total: `ship`, `jamestown`, `wilderness`, `powhatan-village`
+- Generated via `scripts/generate-maps.mjs` using existing pipo tilesets
+- TMX object names must match `@EventData({ name: '...' })` for auto-wiring
+- Map transitions via `player.changeMap('mapname')`
+- Tiled world file (`myworld.world`) lists which maps are active
 
 ### Sprites
-- Using placeholder colored-rectangle PNGs until real art is ready
-- Character spritesheets: 4 columns (animation frames) x 4 rows (directions)
-- Register sprites in `client/index.ts` with `id`, `src`, `framesWidth`, `framesHeight`
+- Using RPG Maker-compatible spritesheets with `RMSpritesheet(3, 4)` preset
+- `hero.png` and `female.png` from starter kit used as placeholders
+- Replace PNGs to update character art — no code changes needed
 
 ## Coding Conventions
-- TypeScript strict mode
-- Use RPG-JS decorators: `@MapData`, `@EventData`, `@Item`, `@Weapon`
-- One file per NPC, creature, interactable, and map
-- Keep quest logic in NPC event files (onAction handlers)
-- Keep item/weapon definitions in database/ folder
-- Vue components for any GUI overlays
+- One file per event with `export default` (required by RPG-JS auto-discovery)
+- Use `@EventData` decorator; name must match TMX object name
+- Quest logic lives in NPC `onAction()` handlers
+- Player variables for all state (`setVariable` / `getVariable`)
 
 ## Config Files
 - `rpg.toml` — RPG-JS configuration (start map, player sprite, RPG mode)

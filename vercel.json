@@ -1,0 +1,4 @@
+{
+    "buildCommand": "RPG_TYPE=rpg npm run build",
+    "outputDirectory": "dist"
+}

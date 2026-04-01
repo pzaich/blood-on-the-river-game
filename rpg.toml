@@ -1,0 +1,13 @@
+name = 'Blood on the River'
+
+modules = [
+    './main',
+    '@rpgjs/mobile-gui',
+    '@rpgjs/default-gui',
+    '@rpgjs/gamepad'
+]
+
+[start]
+    map = 'ship'
+    graphic = 'hero'
+    hitbox = [16, 16]
