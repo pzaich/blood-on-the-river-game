@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 
 @EventData({
     name: 'deer-1',
-    hitbox: { width: 16, height: 16 }
+    hitbox: { width: 8, height: 8 }
 })
 export default class Deer1Event extends RpgEvent {
     private hunted = false

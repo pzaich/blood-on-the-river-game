@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 
 @EventData({
     name: 'tree-10',
-    hitbox: { width: 16, height: 16 }
+    hitbox: { width: 8, height: 8 }
 })
 export default class Tree10Event extends RpgEvent {
     private chopped = false

@@ -1,5 +1,5 @@
 import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
-@EventData({ name: 'bear-1', hitbox: { width: 24, height: 16 } })
+@EventData({ name: 'bear-1', hitbox: { width: 8, height: 8 } })
 export default class Bear1Event extends RpgEvent {
     onInit() { this.setGraphic('bear-sprite') }
     async onAction(player: RpgPlayer) {

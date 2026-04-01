@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 
 @EventData({
     name: 'mud-5',
-    hitbox: { width: 16, height: 16 }
+    hitbox: { width: 8, height: 8 }
 })
 export default class Mud5Event extends RpgEvent {
     private collected = false

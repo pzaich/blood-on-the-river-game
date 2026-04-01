@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 
 @EventData({
     name: 'village-elder',
-    hitbox: { width: 24, height: 16 }
+    hitbox: { width: 8, height: 8 }
 })
 export default class VillageElderEvent extends RpgEvent {
     onInit() { this.setGraphic('powhatan') }

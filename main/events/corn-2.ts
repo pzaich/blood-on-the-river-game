@@ -1,5 +1,5 @@
 import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
-@EventData({ name: 'corn-2', hitbox: { width: 16, height: 16 } })
+@EventData({ name: 'corn-2', hitbox: { width: 8, height: 8 } })
 export default class Corn2Event extends RpgEvent {
     private collected = false
     onInit() { this.setGraphic('corn-sprite') }

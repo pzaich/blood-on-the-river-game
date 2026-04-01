@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer, Components } from '@rpgjs/server'
 
 @EventData({
     name: 'kanta',
-    hitbox: { width: 24, height: 16 }
+    hitbox: { width: 8, height: 8 }
 })
 export default class KantaEvent extends RpgEvent {
     onInit() {
