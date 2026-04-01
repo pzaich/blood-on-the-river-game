@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer, Move } from '@rpgjs/server'
 
 @EventData({
     name: 'barrel-2',
-    hitbox: { width: 32, height: 16 }
+    hitbox: { width: 8, height: 8 }
 })
 export default class Barrel2Event extends RpgEvent {
     private hitCooldown = false
