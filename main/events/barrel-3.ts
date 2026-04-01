@@ -2,14 +2,9 @@ import { RpgEvent, EventData, RpgPlayer, Move } from '@rpgjs/server'
 
 @EventData({
     name: 'barrel-3',
-    hitbox: {
-        width: 32,
-        height: 16
-    }
+    hitbox: { width: 32, height: 16 }
 })
 export default class Barrel3Event extends RpgEvent {
-    private moving = false
-    private stormInterval: any = null
     private hitCooldown = false
 
     onInit() {
@@ -17,30 +12,8 @@ export default class Barrel3Event extends RpgEvent {
         this.speed = 5
     }
 
-    onChanges(player: RpgPlayer) {
-        const stormActive = player.getVariable('quest_1c') === 'active'
-        if (stormActive && !this.moving) {
-            this.moving = true
-            this.startSliding()
-        }
-        if (!stormActive && this.moving) {
-            this.moving = false
-            this.stopSliding()
-        }
-    }
-
-    private startSliding() {
-        this.stormInterval = setInterval(async () => {
-            if (!this.moving) return
-            try { await this.moveRoutes([Move.tileRandom(3)]) } catch {}
-        }, 600)
-    }
-
-    private stopSliding() {
-        if (this.stormInterval) {
-            clearInterval(this.stormInterval)
-            this.stormInterval = null
-        }
+    async onAction(player: RpgPlayer) {
+        await player.showText("A heavy barrel.")
     }
 
     async onPlayerTouch(player: RpgPlayer) {
@@ -58,8 +31,6 @@ export default class Barrel3Event extends RpgEvent {
             if (typeof localStorage !== 'undefined') {
                 localStorage.setItem('storm-active', 'false')
             }
-            this.moving = false
-            this.stopSliding()
             player.showNotification("Knocked down! Talk to Captain Smith to retry.", { time: 3000 })
         } else {
             player.showNotification(`Barrel hit! (${hits}/3)`, { time: 1500 })
