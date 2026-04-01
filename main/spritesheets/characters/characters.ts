@@ -45,6 +45,13 @@ export class BarrelSprite {}
 export class CrateSprite {}
 
 @Spritesheet({
+    id: 'tree',
+    image: require('./tree.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class TreeSprite {}
+
+@Spritesheet({
     id: 'hero',
     image: require('./hero.png'),
     ...RMSpritesheet(3, 4)

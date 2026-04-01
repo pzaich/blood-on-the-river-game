@@ -8,7 +8,7 @@ export default class Tree2Event extends RpgEvent {
     private chopped = false
 
     onInit() {
-        this.setGraphic('crate') // placeholder — green square would be better
+        this.setGraphic('tree') // placeholder — green square would be better
     }
 
     async onAction(player: RpgPlayer) {
@@ -34,7 +34,7 @@ export default class Tree2Event extends RpgEvent {
                 player.showNotification(`Chopped a tree! (${logs}/8 logs for storehouse)`, { time: 1500 })
             }
         } else {
-            await player.showText("A tall tree. No reason to chop it right now.")
+            await player.showText("Talk to Captain Smith first to start building the fort.")
         }
     }
 }

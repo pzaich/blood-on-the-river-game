@@ -1,4 +1,4 @@
-import { RpgEvent, EventData, RpgPlayer, Move, RpgWorld } from '@rpgjs/server'
+import { RpgEvent, EventData, RpgPlayer, Move, RpgWorld, Components } from '@rpgjs/server'
 
 function startBarrelMovement(player: RpgPlayer) {
     const barrelNames = ['barrel-1', 'barrel-2', 'barrel-3', 'barrel-4']
@@ -46,6 +46,7 @@ function stopBarrelMovement(player: RpgPlayer) {
 export default class CaptainSmithEvent extends RpgEvent {
     onInit() {
         this.setGraphic('smith')
+        this.setComponentsTop(Components.text('Capt. John Smith'))
     }
 
     async onAction(player: RpgPlayer) {

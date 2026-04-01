@@ -1,4 +1,4 @@
-import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
+import { RpgEvent, EventData, RpgPlayer, Components } from '@rpgjs/server'
 
 @EventData({
     name: 'richard-mutton',
@@ -10,6 +10,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 export default class RichardMuttonEvent extends RpgEvent {
     onInit() {
         this.setGraphic('richard')
+        this.setComponentsTop(Components.text('Richard Mutton'))
     }
 
     async onAction(player: RpgPlayer) {
