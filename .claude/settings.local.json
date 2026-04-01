@@ -15,7 +15,9 @@
       "Bash(chmod +x /Users/paulzaich/code/blood-on-the-river/scripts/generate-powhatan-tileset.sh)",
       "Bash(bash /Users/paulzaich/code/blood-on-the-river/scripts/generate-powhatan-tileset.sh)",
       "Bash(grep:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(git revert:*)",
+      "Bash(git checkout:*)"
     ]
   }
 }
