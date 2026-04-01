@@ -28,6 +28,7 @@ export default class HunterEvent extends RpgEvent {
             await player.showText("First, sword training. Hit the training targets to learn.", { talkWith: this })
             player.setVariable('quest_3a', 'active')
             player.setVariable('quest_3a_hits', 0)
+            if (typeof localStorage !== 'undefined') localStorage.setItem('training-active', 'true')
             return
         }
 
@@ -52,6 +53,7 @@ export default class HunterEvent extends RpgEvent {
                 player.setVariable('quest_3c', 'active')
                 player.setVariable('quest_3_mussels', 0)
                 player.setVariable('quest_3_crabs', 0)
+                if (typeof localStorage !== 'undefined') localStorage.setItem('training-active', 'false')
             } else {
                 await player.showText(`Shoot ALL the moving targets! (${hits}/6)`, { talkWith: this })
             }
