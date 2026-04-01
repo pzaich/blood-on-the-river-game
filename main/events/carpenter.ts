@@ -90,7 +90,32 @@ export default class CarpenterEvent extends RpgEvent {
             return
         }
 
-        if (q2e === 'complete') {
+        // Quest 2e complete -> start 2f
+        const q2f = player.getVariable('quest_2f')
+        if (q2e === 'complete' && !q2f) {
+            await player.showText("The lookout tower is done! But our people need shelter.", { talkWith: this })
+            await player.showText("Build 4 houses inside the fort. Find the house sites and chop more trees!", { talkWith: this })
+            player.setVariable('quest_2f', 'active')
+            player.setVariable('quest_2f_houses', 0)
+            player.setVariable('quest_2f_logs', 0)
+            return
+        }
+
+        // Quest 2f: Build 4 houses
+        if (q2f === 'active') {
+            const houses = player.getVariable('quest_2f_houses') || 0
+            if (houses >= 4) {
+                await player.showText("All four houses are built! The settlers have shelter now.", { talkWith: this })
+                await player.showText("James Fort is complete! You're a fine builder, Samuel.", { talkWith: this })
+                player.setVariable('quest_2f', 'complete')
+            } else {
+                const logs = player.getVariable('quest_2f_logs') || 0
+                await player.showText(`Build houses at the house sites. Each needs 4 logs. (Houses: ${houses}/4, Logs: ${logs})`, { talkWith: this })
+            }
+            return
+        }
+
+        if (q2f === 'complete') {
             await player.showText("James Fort is complete! You're a fine builder, Samuel.", { talkWith: this })
             return
         }

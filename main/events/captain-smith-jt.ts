@@ -15,7 +15,7 @@ export default class CaptainSmithJTEvent extends RpgEvent {
 
         if (quest === 2) {
             const q2a = player.getVariable('quest_2a')
-            const q2e = player.getVariable('quest_2e')
+            const q2f = player.getVariable('quest_2f')
 
             if (!q2a) {
                 await player.showText("Welcome to Virginia, Samuel! This is where we'll build James Fort.", { talkWith: this })
@@ -25,7 +25,7 @@ export default class CaptainSmithJTEvent extends RpgEvent {
                 return
             }
 
-            if (q2e === 'complete') {
+            if (q2f === 'complete') {
                 await player.showText("James Fort is built! You've done well, Samuel.", { talkWith: this })
                 await player.showText("But we need food. Time to learn to hunt. Head east into the wilderness.", { talkWith: this })
                 player.setVariable('current_quest', 3)

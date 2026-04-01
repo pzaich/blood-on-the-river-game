@@ -19,40 +19,40 @@ import { fileURLToPath } from 'url'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const mapsDir = join(__dirname, '..', 'main', 'worlds', 'maps')
 
-// Ship tile constants — use tiles 33-64 from the combined tileset
-// (firstgid=1, so add 33 to get TMX tile value for ship row starting at tileset id 32)
+// Ship uses same 32-tile tileset as land maps, repurposing tiles:
+// water=5(river), deck=3(dirt), hull=11(wall-v), etc.
 const _ = 0
-const DW = 33      // deep ocean
-const WW = 34      // waves
-const WP = 35      // wood deck
-const DP = 36      // dark deck
-const HW = 37      // hull wall
-const MA = 38      // mast
-const RO = 39      // rope on deck
-const RA = 40      // rail
-const BW = 41      // bow
-const ST = 42      // stern
-const SR = 43      // hatch/stairs (walkable)
-const CN = 44      // cannon
-const CR = 45      // crate
-const BR = 46      // barrel
-const SL = 47      // sail
-const HL = 49      // hull left
-const HR = 50      // hull right
-const HT = 51      // hull top
-const HB = 52      // hull bottom
-const TL = 53      // hull top-left corner
-const TR = 54      // hull top-right corner
-const BL = 55      // hull bottom-left corner
-const BR2 = 56     // hull bottom-right corner
-const DL = 57      // deck light
-const DD = 58      // deck dark
-const HA = 59      // hatch door
-const WH = 60      // wheel
-const LN = 61      // lantern
-const AN = 62      // anchor
-const FL = 63      // flag
-const BF = 64      // below deck floor
+const DW = 5       // water = ocean
+const WW = 6       // shallow = waves
+const WP = 3       // dirt = deck planks
+const DP = 4       // path = dark deck
+const HW = 11      // wall-h = hull
+const MA = 9       // pine = mast
+const RO = 3       // dirt = rope area
+const RA = 11      // wall-h = rail
+const BW = 30      // corner = bow
+const ST = 14      // storehouse = stern cabin
+const SR = 4       // path = stairs (walkable)
+const CN = 24      // cannon
+const CR = 21      // crate
+const BR = 22      // barrel
+const SL = 1       // grass2 = sail area
+const HL = 11      // wall-h = hull left
+const HR = 11      // wall-h = hull right
+const HT = 12      // wall-v... wait, 11=wall-h
+const HB = 12      // gate area = hull bottom
+const TL = 30      // corner
+const TR = 30      // corner
+const BL = 30      // corner
+const BR2 = 30     // corner
+const DL = 3       // dirt = light deck
+const DD = 8       // mud = dark deck
+const HA = 13      // gate = hatch
+const WH = 27      // well = wheel area
+const LN = 17      // fire = lantern
+const AN = 26      // sign = anchor
+const FL = 16      // tower = flag
+const BF = 8       // mud = below deck
 
 function encodeTiles(grid) {
   const height = grid.length
