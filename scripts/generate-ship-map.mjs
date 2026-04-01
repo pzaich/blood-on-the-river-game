@@ -126,13 +126,13 @@ ship[13]= [_,_,_,_,_,_,HL,WP,LN,WP,WP,WP,WH,WP,WP,WP,LN,WP,HR,_,_,_,_,_]
 // Row 14: Stern closing + stairs down
 ship[14]= [_,_,_,_,_,_,_,BL,HB,HB,HB,SR,SR,HB,HB,HB,BR2,_,_,_,_,_,_,_]
 
-// Row 15: Gap between decks (water visible)
-ship[15]= [_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_]
+// Row 15: Stairway connecting upper and lower decks
+ship[15]= [_,_,_,_,_,_,_,HL,HW,HW,HW,DP,DP,HW,HW,HW,HR,_,_,_,_,_,_,_]
 
 // === BELOW DECK (rows 16-26) ===
 
-// Row 16: Below deck top wall
-ship[16]= [_,_,_,_,_,_,_,TL,HT,HT,HT,HT,HT,HT,HT,HT,TR,_,_,_,_,_,_,_]
+// Row 16: Below deck top wall with opening for stairs
+ship[16]= [_,_,_,_,_,_,_,HL,HW,HW,HW,DP,DP,HW,HW,HW,HR,_,_,_,_,_,_,_]
 
 // Row 17: Below deck
 ship[17]= [_,_,_,_,_,_,_,HL,BF,BF,BF,BF,BF,BF,BF,BF,HR,_,_,_,_,_,_,_]
@@ -174,10 +174,10 @@ const objects = [
   { id: 2, name: 'captain-smith', x: 10 * 32, y: 5 * 32 },
   // Reverend Hunt (upper deck, near stern)
   { id: 3, name: 'reverend-hunt', x: 14 * 32, y: 12 * 32 },
-  // Supply crates (hidden in tricky spots)
-  { id: 4, name: 'supply-crate-1', x: 7 * 32, y: 4 * 32 },   // tucked at the narrow bow
-  { id: 5, name: 'supply-crate-2', x: 18 * 32, y: 11 * 32 },  // behind rail near stern
-  { id: 6, name: 'supply-crate-3', x: 15 * 32, y: 23 * 32 },  // hidden below deck near barrels
+  // Supply crates (hidden in tricky spots — all on walkable WP/BF tiles)
+  { id: 4, name: 'supply-crate-1', x: 9 * 32, y: 4 * 32 },    // narrow bow area, easy to miss
+  { id: 5, name: 'supply-crate-2', x: 17 * 32, y: 12 * 32 },   // stern corner near wheel
+  { id: 6, name: 'supply-crate-3', x: 9 * 32, y: 24 * 32 },    // below deck, must find stairs
   // Richard Mutton (below deck)
   { id: 7, name: 'richard-mutton', x: 12 * 32, y: 20 * 32 },
   // Barrels (storm obstacles on upper deck)
