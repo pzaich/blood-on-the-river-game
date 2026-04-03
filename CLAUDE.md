@@ -95,8 +95,43 @@ See `PLAN.md` for full quest design, item database, map connections, and impleme
 - **Don't commit:** Broken/half-working states, generated files in `dist/`, `node_modules/`, `.env` files
 - **Commit granularity:** One logical change per commit. If you added a map AND an NPC that go together, that's one commit. If you added two unrelated NPCs, those can be two commits.
 
+## RPG-JS Gotchas (learned the hard way)
+
+### Single Tileset Requirement
+- **ALL maps must reference the same tileset file** (e.g., `ship-tiles.tsx`). RPG-JS only loads the tileset from the start map. Any map referencing a different tileset will hang on loading forever.
+- The shared tileset currently has 32 tiles — land tiles (grass, trees, walls, buildings) and ship tiles share the same set.
+
+### TMX Object Placement
+- **NEVER place objects at y=0 or x=0 or at the max edge of the map.** RPG-JS's `createShape` crashes with `Cannot read properties of undefined (reading 'y')` when objects are at pixel 0 or the last pixel. Always place objects at least 1 tile inward from all edges.
+- `nextobjectid` in TMX must be GREATER than the highest object `id` used. If you have object id=38, nextobjectid must be ≥39.
+
+### Event Hitboxes
+- Large hitboxes (32x16) block player movement. Use 8x8 for all events so the player can walk through/past NPCs and items.
+- Player hitbox is 10x10 (in `rpg.toml`) to fit through tight gaps.
+
+### Event `onChanges` Hook
+- **Do NOT use `onChanges` on events** — it fires every tick and causes game freezes. Use `setInterval` with `localStorage` flags instead for periodic behavior (barrel movement, target movement).
+
+### Quest Variable Comparisons
+- Use **loose equality** (`==` / `!=`) when comparing `current_quest`, not strict (`===` / `!==`). The debug panel may set values as strings while game code uses numbers.
+
+### localStorage for Cross-Layer Communication
+- Server-side event code and client-side HTML/JS can communicate via `localStorage`:
+  - `storm-active` — triggers storm visual overlay + barrel movement
+  - `training-active` — triggers training target movement
+  - `archery-active` — triggers archery target movement in Powhatan quest
+  - `game-sound` — triggers sound effects (collect, chop, hit, build, etc.)
+
+### Sprites
+- Sprites use `RMSpritesheet(3, 4)` preset: 3 columns x 4 rows, 32x32 per cell = 96x128 PNG
+- If a sprite doesn't render, try using a known-working sprite ID (`samuel`, `smith`, `hunt`, `richard`) to verify the event is placed correctly
+- Register all sprites in `main/spritesheets/characters/characters.ts` with `@Spritesheet` decorator
+- The `export default` class gets the `images` property auto-set by the compiler; additional sprites use named exports
+
 ## Important Notes
 - This is an educational game for children — keep content age-appropriate
 - The Powhatan quest line (Quest 4) should be culturally respectful — Samuel is an invited guest learning, not conquering
 - All sprites are placeholders — design code so assets can be swapped by changing PNGs without code changes
 - RPG-JS has no built-in quest system — all quest logic is custom via player variables and NPC event handlers
+- Settler dialogue reflects the book's themes: gentleman vs. laborer conflict, Smith's leadership style, trust between peoples
+- Characters from the book have distinct personalities: Wingfield (arrogant), Ratcliffe (troublemaker), Kendall (schemer), Laxon (hardworking), Thomas Savage (language learner)
