@@ -1,26 +1,17 @@
 import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
-
-@EventData({
-    name: 'mud-3',
-    hitbox: { width: 8, height: 8 }
-})
+@EventData({ name: 'mud-3', hitbox: { width: 8, height: 8 } })
 export default class Mud3Event extends RpgEvent {
-    private collected = false
-
-    onInit() {
-        this.setGraphic('barrel') // placeholder
-    }
-
+    private cooldown = false
+    onInit() { this.setGraphic('barrel') }
     async onAction(player: RpgPlayer) {
-        if (this.collected) {
-            await player.showText("Already gathered.")
-            return
-        }
-        if (player.getVariable('quest_2b') !== 'active') {
+        if (this.cooldown) return
+        if (player.getVariable('quest_2b') != 'active') {
             await player.showText("A pile of thick mud near the water.")
             return
         }
-        this.collected = true; if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'collect')
+        this.cooldown = true
+        setTimeout(() => { this.cooldown = false }, 2000)
+        if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'collect')
         const mud = (player.getVariable('quest_2_mud') || 0) + 1
         player.setVariable('quest_2_mud', mud)
         player.showNotification(`Gathered mud! (${mud}/5)`, { time: 1500 })
