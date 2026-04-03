@@ -88,8 +88,16 @@ for (let y = 4; y <= 14; y++) {
 // South point of triangle
 features[15][12] = CW
 
-// Gate on north wall
-features[3][12] = GA
+// Gate on north wall (clear 3 tiles wide for easy passage)
+features[3][11] = 0  // clear
+features[3][12] = 0  // clear (gate opening)
+features[3][13] = 0  // clear
+
+// Gate on right wall (for wilderness exit) — clear tiles at row 9
+for (let y = 8; y <= 10; y++) {
+  const x = 20 - Math.round((y - 4) * 8 / 10)
+  features[y][x] = 0  // clear the wall here
+}
 
 // === BUILDINGS INSIDE FORT ===
 // Church (center-north)
