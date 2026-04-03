@@ -98,6 +98,15 @@ export default class CaptainSmithJTEvent extends RpgEvent {
             return
         }
 
+        // If quest isn't set or is 1 (just arrived from ship), start Quest 2
+        if (!quest || quest == 1) {
+            player.setVariable('current_quest', 2)
+            await player.showText("Welcome to Virginia, Samuel! This is where we'll build James Fort.", { talkWith: this })
+            await player.showText("Talk to the carpenter — he'll tell you what we need.", { talkWith: this })
+            player.setVariable('quest_2a', 'active')
+            player.setVariable('quest_2_logs', 0)
+            return
+        }
         await player.showText("We have much work to do here in Virginia.", { talkWith: this })
     }
 }

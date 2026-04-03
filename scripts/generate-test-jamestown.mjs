@@ -88,15 +88,19 @@ for (let y = 4; y <= 14; y++) {
 // South point of triangle
 features[15][12] = CW
 
-// Gate on north wall (clear 3 tiles wide for easy passage)
-features[3][11] = 0  // clear
-features[3][12] = 0  // clear (gate opening)
-features[3][13] = 0  // clear
+// BIG gate on north wall (clear 7 tiles)
+for (let x = 9; x <= 15; x++) features[3][x] = 0
 
-// Gate on right wall (for wilderness exit) — clear tiles at row 9
-for (let y = 8; y <= 10; y++) {
+// Clear most of BOTH diagonal walls — only keep top and bottom corners
+// Left wall: only keep rows 4-5 and 13-14
+for (let y = 6; y <= 12; y++) {
+  const x = 4 + Math.round((y - 4) * 8 / 10)
+  if (x >= 0 && x < W) features[y][x] = 0
+}
+// Right wall: only keep rows 4-5 and 13-14
+for (let y = 6; y <= 12; y++) {
   const x = 20 - Math.round((y - 4) * 8 / 10)
-  features[y][x] = 0  // clear the wall here
+  if (x >= 0 && x < W) features[y][x] = 0
 }
 
 // === BUILDINGS INSIDE FORT ===
