@@ -430,14 +430,40 @@
             if (!p) { console.warn('Player not ready'); return; }
             const pos = MAP_STARTS[mapName] || { x: 200, y: 200 };
             console.log('Changing map to', mapName, 'at', pos);
+
+            // Save all quest state to localStorage before map change
+            const state = {};
+            DBG_KEYS.forEach(k => {
+                const v = p.getVariable(k);
+                if (v !== undefined) state[k] = v;
+            });
+            localStorage.setItem('quest-state', JSON.stringify(state));
+            localStorage.setItem('target-map', mapName);
+
+            // Try changeMap first
+            let changed = false;
             try {
                 const result = p.changeMap(mapName, pos);
                 if (result && result.then) {
-                    result.then(() => console.log('Map changed to', mapName))
-                          .catch(e => console.error('changeMap failed:', e));
+                    const timeout = setTimeout(() => {
+                        if (!changed) {
+                            console.log('changeMap timed out, reloading...');
+                            window.location.reload();
+                        }
+                    }, 3000);
+                    result.then(() => {
+                        changed = true;
+                        clearTimeout(timeout);
+                        console.log('Map changed to', mapName);
+                        localStorage.removeItem('target-map');
+                    }).catch(e => {
+                        console.error('changeMap failed, reloading...', e);
+                        window.location.reload();
+                    });
                 }
             } catch(e) {
-                console.error('changeMap error:', e);
+                console.error('changeMap error, reloading...', e);
+                window.location.reload();
             }
         }
 
