@@ -191,10 +191,13 @@ const objects = [
   { id: 45, name: 'settler-7', x: 8 * 32, y: 10 * 32 },
   { id: 46, name: 'settler-8', x: 15 * 32, y: 12 * 32 },
 
+  { id: 47, name: 'settler-9', x: 13 * 32, y: 11 * 32 },
+  { id: 48, name: 'settler-10', x: 11 * 32, y: 10 * 32 },
+
   // Quest 5 NPCs
-  { id: 47, name: 'namontack-jt', x: 12 * 32, y: 2 * 32 },
-  { id: 48, name: 'settler', x: 10 * 32, y: 10 * 32 },
-  { id: 49, name: 'lookout-defend', x: 12 * 32, y: 13 * 32 },
+  { id: 49, name: 'namontack-jt', x: 12 * 32, y: 2 * 32 },
+  { id: 50, name: 'settler', x: 10 * 32, y: 10 * 32 },
+  { id: 51, name: 'lookout-defend', x: 12 * 32, y: 13 * 32 },
 ]
 
 const maxId = Math.max(...objects.map(o => o.id))
@@ -365,6 +368,11 @@ const powTmx = makeMap('powhatan', 20, 20,
     { id: 21, name: 'powhatan-warrior-2', x: 17 * 32, y: 10 * 32 },
     { id: 22, name: 'powhatan-woman-1', x: 6 * 32, y: 4 * 32 },
     { id: 23, name: 'powhatan-woman-2', x: 15 * 32, y: 4 * 32 },
+    // English settlers visiting the village
+    { id: 24, name: 'settler-3', x: 8 * 32, y: 16 * 32 },   // Thomas Savage (translator)
+    { id: 25, name: 'settler-5', x: 12 * 32, y: 14 * 32 },  // Nate Peacock (Samuel's friend)
+    { id: 26, name: 'settler-9', x: 6 * 32, y: 10 * 32 },   // Anas Todkill
+    { id: 27, name: 'settler-10', x: 14 * 32, y: 12 * 32 },  // John Laydon Jr.
   ]
 )
 
