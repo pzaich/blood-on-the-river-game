@@ -32,17 +32,19 @@ export default class NamontackEvent extends RpgEvent {
                 await player.showText("We will teach you to shoot the bow, craft useful things, play our games, and share a feast.", { talkWith: this })
                 await player.showText("You will be our honored guest. What do you say?", { talkWith: this })
             }
-            await player.showText("Wonderful! First, let me teach you the bow. Go to the archery range on the east side. Hit 3 of 5 targets!", { talkWith: this })
+            await player.showText("Wonderful! First, let me teach you the bow. Go to the archery range on the east side. Hit all 5 moving targets!", { talkWith: this })
             player.setVariable('quest_4a', 'complete')
             player.setVariable('quest_4b', 'active')
             player.setVariable('quest_4b_hits', 0)
+            if (typeof localStorage !== 'undefined') localStorage.setItem('archery-active', 'true')
             return
         }
 
         if (q4b === 'active') {
             const hits = player.getVariable('quest_4b_hits') || 0
-            if (hits >= 3) {
+            if (hits >= 5) {
                 await player.showText("Excellent shooting! You have the eye of a hunter. Take this — a Powhatan bow, crafted by our finest bowyer.", { talkWith: this })
+                if (typeof localStorage !== 'undefined') localStorage.setItem('archery-active', 'false')
                 player.setVariable('quest_4b', 'complete')
                 player.setVariable('quest_4c', 'active')
                 await player.showText("Now visit the Village Elder. She will teach you to make a leather pouch. You'll need deer hide and sinew — look around the village.", { talkWith: this })

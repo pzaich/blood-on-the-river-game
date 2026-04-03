@@ -182,16 +182,19 @@ const objects = [
   { id: 38, name: 'house-site-3', x: 10 * 32, y: 11 * 32 },
   { id: 39, name: 'house-site-4', x: 14 * 32, y: 11 * 32 },
 
-  // English settlers around the fort
+  // English settlers around the fort (1607 colonists)
   { id: 40, name: 'settler-2', x: 10 * 32, y: 8 * 32 },
   { id: 41, name: 'settler-3', x: 14 * 32, y: 10 * 32 },
   { id: 42, name: 'settler-4', x: 11 * 32, y: 12 * 32 },
   { id: 43, name: 'settler-5', x: 13 * 32, y: 8 * 32 },
+  { id: 44, name: 'settler-6', x: 16 * 32, y: 9 * 32 },
+  { id: 45, name: 'settler-7', x: 8 * 32, y: 10 * 32 },
+  { id: 46, name: 'settler-8', x: 15 * 32, y: 12 * 32 },
 
   // Quest 5 NPCs
-  { id: 44, name: 'namontack-jt', x: 12 * 32, y: 2 * 32 },
-  { id: 45, name: 'settler', x: 10 * 32, y: 10 * 32 },
-  { id: 46, name: 'lookout-defend', x: 12 * 32, y: 13 * 32 },
+  { id: 47, name: 'namontack-jt', x: 12 * 32, y: 2 * 32 },
+  { id: 48, name: 'settler', x: 10 * 32, y: 10 * 32 },
+  { id: 49, name: 'lookout-defend', x: 12 * 32, y: 13 * 32 },
 ]
 
 const maxId = Math.max(...objects.map(o => o.id))
