@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="43">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="47">
  <tileset firstgid="1" source="ship-tiles.tsx"/>
  <layer id="1" name="Ground" width="25" height="20">
   <data encoding="base64">
@@ -117,13 +117,25 @@
   <object id="39" name="house-site-4" x="448" y="352">
    <point/>
   </object>
-  <object id="40" name="namontack-jt" x="384" y="64">
+  <object id="40" name="settler-2" x="320" y="256">
    <point/>
   </object>
-  <object id="41" name="settler" x="320" y="320">
+  <object id="41" name="settler-3" x="448" y="320">
    <point/>
   </object>
-  <object id="42" name="lookout-defend" x="384" y="416">
+  <object id="42" name="settler-4" x="352" y="384">
+   <point/>
+  </object>
+  <object id="43" name="settler-5" x="416" y="256">
+   <point/>
+  </object>
+  <object id="44" name="namontack-jt" x="384" y="64">
+   <point/>
+  </object>
+  <object id="45" name="settler" x="320" y="320">
+   <point/>
+  </object>
+  <object id="46" name="lookout-defend" x="384" y="416">
    <point/>
   </object>
  </objectgroup>

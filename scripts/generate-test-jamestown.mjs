@@ -182,10 +182,16 @@ const objects = [
   { id: 38, name: 'house-site-3', x: 10 * 32, y: 11 * 32 },
   { id: 39, name: 'house-site-4', x: 14 * 32, y: 11 * 32 },
 
+  // English settlers around the fort
+  { id: 40, name: 'settler-2', x: 10 * 32, y: 8 * 32 },
+  { id: 41, name: 'settler-3', x: 14 * 32, y: 10 * 32 },
+  { id: 42, name: 'settler-4', x: 11 * 32, y: 12 * 32 },
+  { id: 43, name: 'settler-5', x: 13 * 32, y: 8 * 32 },
+
   // Quest 5 NPCs
-  { id: 40, name: 'namontack-jt', x: 12 * 32, y: 2 * 32 },
-  { id: 41, name: 'settler', x: 10 * 32, y: 10 * 32 },
-  { id: 42, name: 'lookout-defend', x: 12 * 32, y: 13 * 32 },
+  { id: 44, name: 'namontack-jt', x: 12 * 32, y: 2 * 32 },
+  { id: 45, name: 'settler', x: 10 * 32, y: 10 * 32 },
+  { id: 46, name: 'lookout-defend', x: 12 * 32, y: 13 * 32 },
 ]
 
 const maxId = Math.max(...objects.map(o => o.id))
@@ -348,6 +354,14 @@ const powTmx = makeMap('powhatan', 20, 20,
     { id: 14, name: 'feast-fire', x: 10 * 32, y: 10 * 32 },
     { id: 15, name: 'to-jamestown-pv', x: 10 * 32, y: 19 * 32 },
     { id: 16, name: 'kanta', x: 14 * 32, y: 8 * 32 },
+    // Powhatan villagers
+    { id: 17, name: 'powhatan-kid-1', x: 8 * 32, y: 14 * 32 },
+    { id: 18, name: 'powhatan-kid-2', x: 12 * 32, y: 16 * 32 },
+    { id: 19, name: 'powhatan-elder-1', x: 4 * 32, y: 4 * 32 },
+    { id: 20, name: 'powhatan-warrior-1', x: 3 * 32, y: 10 * 32 },
+    { id: 21, name: 'powhatan-warrior-2', x: 17 * 32, y: 10 * 32 },
+    { id: 22, name: 'powhatan-woman-1', x: 6 * 32, y: 4 * 32 },
+    { id: 23, name: 'powhatan-woman-2', x: 15 * 32, y: 4 * 32 },
   ]
 )
 
