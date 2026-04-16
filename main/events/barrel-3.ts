@@ -10,6 +10,7 @@ export default class Barrel3Event extends RpgEvent {
     onInit() {
         this.setGraphic('barrel')
         this.speed = 5
+        this.through = true
 
         // Move randomly during storm — check localStorage flag
         setInterval(async () => {

@@ -395,7 +395,19 @@
             const overlay = document.getElementById('storm-overlay');
             const rpg = document.getElementById('rpg');
             setInterval(() => {
-                const stormActive = localStorage.getItem('storm-active') === 'true';
+                let stormActive = localStorage.getItem('storm-active') === 'true';
+                // Auto-stop the storm when the deadline has passed — guarantees
+                // the storm ends even if a server-side setTimeout is unreliable.
+                const deadlineStr = localStorage.getItem('storm-deadline');
+                if (stormActive && deadlineStr) {
+                    const deadline = parseInt(deadlineStr, 10);
+                    if (!isNaN(deadline) && Date.now() >= deadline) {
+                        localStorage.setItem('storm-active', 'false');
+                        localStorage.removeItem('storm-deadline');
+                        localStorage.setItem('storm-expired', 'true');
+                        stormActive = false;
+                    }
+                }
                 if (stormActive) {
                     overlay.className = 'storm-active';
                     rpg.classList.add('storm-shake');
@@ -420,7 +432,7 @@
 
         const MAP_STARTS = {
             'ship': { x: 384, y: 288 },
-            'jamestown': { x: 384, y: 288 },
+            'jamestown': { x: 960, y: 640 },
             'wilderness': { x: 64, y: 320 },
             'powhatan-village': { x: 320, y: 576 }
         };

@@ -16,7 +16,7 @@ export default class CaptainSmithEvent extends RpgEvent {
     async onAction(player: RpgPlayer) {
         const quest1a = player.getVariable('quest_1a')
         const quest1b = player.getVariable('quest_1b')
-        const quest1c = player.getVariable('quest_1c')
+        let quest1c = player.getVariable('quest_1c')
         const currentQuest = player.getVariable('current_quest') || 0
 
         // Quest 1a: Meet Captain Smith
@@ -62,6 +62,29 @@ export default class CaptainSmithEvent extends RpgEvent {
             return
         }
 
+        // Helper: start (or restart) the 15s storm
+        const startStorm = () => {
+            player.setVariable('storm_hits', 0)
+            player.setVariable('quest_1c', 'active')
+            if (typeof localStorage !== 'undefined') {
+                localStorage.removeItem('storm-expired')
+                localStorage.setItem('storm-active', 'true')
+                localStorage.setItem('storm-deadline', String(Date.now() + 15000))
+                localStorage.setItem('game-sound', 'storm')
+            }
+            // Backup server-side timer (client-side deadline check is the primary stop)
+            setTimeout(() => {
+                if (typeof localStorage !== 'undefined') {
+                    localStorage.setItem('storm-active', 'false')
+                    localStorage.removeItem('storm-deadline')
+                }
+                const h = player.getVariable('storm_hits') || 0
+                if (h < 3 && player.getVariable('quest_1c') === 'active') {
+                    player.setVariable('quest_1c', 'survived')
+                }
+            }, 15500)
+        }
+
         // Quest 1b: Check on supply crate progress
         if (quest1b === 'active') {
             const crates = player.getVariable('quest_1b_crates') || 0
@@ -73,24 +96,10 @@ export default class CaptainSmithEvent extends RpgEvent {
                     talkWith: this
                 })
                 player.setVariable('quest_1b', 'complete')
-                player.setVariable('storm_hits', 0)
-                player.setVariable('quest_1c', 'active')
-                if (typeof localStorage !== 'undefined') {
-                    localStorage.setItem('storm-active', 'true')
-                    localStorage.setItem('game-sound', 'storm')
-                }
                 await player.showText("A storm is coming! Dodge the sliding barrels for 15 seconds!", {
                     talkWith: this
                 })
-                setTimeout(() => {
-                    const hits = player.getVariable('storm_hits') || 0
-                    if (hits < 3) {
-                        player.setVariable('quest_1c', 'survived')
-                    }
-                    if (typeof localStorage !== 'undefined') {
-                        localStorage.setItem('storm-active', 'false')
-                    }
-                }, 15000)
+                startStorm()
             } else {
                 await player.showText(`You've found ${crates} of 3 supply crates. Keep searching the deck!`, {
                     talkWith: this
@@ -99,34 +108,41 @@ export default class CaptainSmithEvent extends RpgEvent {
             return
         }
 
-        // Quest 1c: Storm — restart if barrels aren't moving (player failed)
+        // Quest 1c: Storm in progress or just expired
         if (quest1c === 'active') {
+            // Client-side auto-stop set this flag when the 15s deadline passed.
+            const expired = typeof localStorage !== 'undefined' && localStorage.getItem('storm-expired') === 'true'
+            const stormActive = typeof localStorage !== 'undefined' && localStorage.getItem('storm-active') === 'true'
             const hits = player.getVariable('storm_hits') || 0
-            if (hits === 0) {
-                // Restart the storm
-                player.setVariable('storm_hits', 0)
-                if (typeof localStorage !== 'undefined') {
-                    localStorage.setItem('storm-active', 'true')
-                    localStorage.setItem('game-sound', 'storm')
+
+            if (expired) {
+                // Storm timer ran out — promote quest.
+                if (typeof localStorage !== 'undefined') localStorage.removeItem('storm-expired')
+                if (hits < 3) {
+                    player.setVariable('quest_1c', 'survived')
+                    quest1c = 'survived'
+                    // Fall through to 'survived' branch below
+                } else {
+                    // Knocked out — offer retry
+                    await player.showText("Brace yourself, Samuel! Here comes the storm again! Dodge the barrels!", {
+                        talkWith: this
+                    })
+                    startStorm()
+                    return
                 }
-                await player.showText("Brace yourself, Samuel! Here comes the storm again! Dodge the barrels!", {
-                    talkWith: this
-                })
-                setTimeout(() => {
-                    const h = player.getVariable('storm_hits') || 0
-                    if (h < 3) {
-                        player.setVariable('quest_1c', 'survived')
-                    }
-                    if (typeof localStorage !== 'undefined') {
-                        localStorage.setItem('storm-active', 'false')
-                    }
-                }, 15000)
-            } else {
+            } else if (stormActive) {
                 await player.showText("Keep dodging, Samuel! The storm isn't over yet!", {
                     talkWith: this
                 })
+                return
+            } else {
+                // Storm not active but quest still 'active' — player was knocked down. Retry.
+                await player.showText("Brace yourself, Samuel! Here comes the storm again! Dodge the barrels!", {
+                    talkWith: this
+                })
+                startStorm()
+                return
             }
-            return
         }
 
         // Quest 1c: Survived the storm

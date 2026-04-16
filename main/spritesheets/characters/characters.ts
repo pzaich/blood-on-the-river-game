@@ -136,6 +136,13 @@ export class BearSprite {}
 export class CornSprite {}
 
 @Spritesheet({
+    id: 'wall-sprite',
+    image: require('./wall.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class WallSprite {}
+
+@Spritesheet({
     id: 'squirrel-sprite',
     image: require('./squirrel.png'),
     ...RMSpritesheet(3, 4)

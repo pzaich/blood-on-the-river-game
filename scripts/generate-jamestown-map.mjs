@@ -61,19 +61,20 @@ function encodeTiles(grid) {
   return buf.toString('base64')
 }
 
-const W = 30, H = 25
+// Map is 2x the original 30x25 for more open exploration space.
+const W = 60, H = 50
 
 // Layer 1: Ground (grass with dirt paths)
 const ground = Array.from({ length: H }, (_, y) =>
   Array.from({ length: W }, (_, x) => {
-    // Riverbank area (bottom 3 rows)
-    if (y >= H - 3) return SA
-    if (y >= H - 5 && (x + y) % 4 === 0) return SA
+    // Riverbank area (bottom 6 rows)
+    if (y >= H - 6) return SA
+    if (y >= H - 10 && (x + y) % 4 === 0) return SA
     // Central dirt area
-    if (y >= 8 && y <= 16 && x >= 8 && x <= 21) return DI
+    if (y >= 16 && y <= 32 && x >= 16 && x <= 42) return DI
     // Paths
-    if (x === 15 && y >= 3 && y < H - 3) return DP  // N-S path
-    if (y === 12 && x >= 3 && x < W - 3) return DP   // E-W path
+    if (x === 30 && y >= 6 && y < H - 6) return DP   // N-S path
+    if (y === 24 && x >= 6 && x < W - 6) return DP   // E-W path
     // Grass variety
     if ((x + y) % 5 === 0) return G2
     return GR
@@ -85,99 +86,99 @@ const features = Array.from({ length: H }, () => Array(W).fill(_))
 
 for (let y = 0; y < H; y++) {
   for (let x = 0; x < W; x++) {
-    // Dense forest (top 2 rows, with gap at col 14-16 for Powhatan exit)
-    if (y < 2 && !(x >= 14 && x <= 16)) {
+    // Dense forest (top 4 rows, with gap at col 28-32 for Powhatan exit)
+    if (y < 4 && !(x >= 28 && x <= 32)) {
       features[y][x] = (x + y) % 2 === 0 ? FD : TC
     }
-    // Forest right edge (with gap at rows 11-13 for wilderness exit)
-    if (x >= W - 2 && !(y >= 11 && y <= 13)) {
+    // Forest right edge (with gap at rows 22-26 for wilderness exit)
+    if (x >= W - 4 && !(y >= 22 && y <= 26)) {
       features[y][x] = (x + y) % 2 === 0 ? FD : TC
     }
     // Left edge forest
-    if (x < 2 && y < H - 3) {
+    if (x < 4 && y < H - 6) {
       features[y][x] = (x + y) % 2 === 0 ? FD : TC
     }
-    // Water (bottom 2 rows)
-    if (y >= H - 2) {
+    // Water (bottom 4 rows)
+    if (y >= H - 4) {
       features[y][x] = (x + y) % 3 === 0 ? WW : WA
     }
     // Sandy riverbank transition
-    if (y === H - 3 && x > 2 && x < W - 2) {
+    if (y === H - 6 && x > 4 && x < W - 4) {
       if (x % 4 === 0) features[y][x] = BU
     }
   }
 }
 
-// Scattered trees in the clearing
-const treePairs = [[4, 4], [6, 6], [3, 8], [5, 15], [7, 3], [22, 4], [24, 6], [23, 8]]
+// Scattered trees in the clearing (positions 2x original)
+const treePairs = [[8, 8], [12, 12], [6, 16], [10, 30], [14, 6], [44, 8], [48, 12], [46, 16]]
 treePairs.forEach(([x, y]) => { if (!features[y][x]) features[y][x] = TT })
 
 // Bushes and flowers
-const bushes = [[8, 6], [20, 5], [10, 18], [22, 17]]
+const bushes = [[16, 12], [40, 10], [20, 36], [44, 34]]
 bushes.forEach(([x, y]) => { if (!features[y][x]) features[y][x] = BU })
-const flowers = [[12, 7], [18, 9], [6, 14]]
+const flowers = [[24, 14], [36, 18], [12, 28]]
 flowers.forEach(([x, y]) => { if (!features[y][x]) features[y][x] = FL })
 
 // Campfire in center
-features[10][14] = CF
+features[20][28] = CF
 
 // Sign at entrance
-features[3][15] = SI
+features[6][30] = SI
 
 const objects = [
   // Player start (center of clearing)
-  { id: 1, name: 'start', class: 'start', x: 15 * 32, y: 10 * 32 },
+  { id: 1, name: 'start', class: 'start', x: 30 * 32, y: 20 * 32 },
 
   // Map exits
-  { id: 2, name: 'to-wilderness', x: 28 * 32, y: 12 * 32 },      // east edge gap
-  { id: 3, name: 'to-powhatan', x: 15 * 32, y: 0 * 32 },          // north edge gap
+  { id: 2, name: 'to-wilderness', x: 56 * 32, y: 24 * 32 },       // east edge gap
+  { id: 3, name: 'to-powhatan', x: 30 * 32, y: 1 * 32 },           // north edge gap
 
   // NPCs
-  { id: 4, name: 'carpenter', x: 12 * 32, y: 10 * 32 },
-  { id: 5, name: 'captain-smith-jt', x: 16 * 32, y: 8 * 32 },
+  { id: 4, name: 'carpenter', x: 24 * 32, y: 20 * 32 },
+  { id: 5, name: 'captain-smith-jt', x: 32 * 32, y: 16 * 32 },
 
   // Choppable trees (along forest edge, walkable tiles nearby)
-  { id: 10, name: 'tree-1', x: 3 * 32, y: 4 * 32 },
-  { id: 11, name: 'tree-2', x: 5 * 32, y: 3 * 32 },
-  { id: 12, name: 'tree-3', x: 7 * 32, y: 3 * 32 },
-  { id: 13, name: 'tree-4', x: 3 * 32, y: 6 * 32 },
-  { id: 14, name: 'tree-5', x: 3 * 32, y: 9 * 32 },
-  { id: 15, name: 'tree-6', x: 24 * 32, y: 4 * 32 },
-  { id: 16, name: 'tree-7', x: 23 * 32, y: 6 * 32 },
-  { id: 17, name: 'tree-8', x: 24 * 32, y: 8 * 32 },
-  { id: 18, name: 'tree-9', x: 5 * 32, y: 16 * 32 },
-  { id: 19, name: 'tree-10', x: 22 * 32, y: 16 * 32 },
+  { id: 10, name: 'tree-1', x: 6 * 32, y: 8 * 32 },
+  { id: 11, name: 'tree-2', x: 10 * 32, y: 6 * 32 },
+  { id: 12, name: 'tree-3', x: 14 * 32, y: 6 * 32 },
+  { id: 13, name: 'tree-4', x: 6 * 32, y: 12 * 32 },
+  { id: 14, name: 'tree-5', x: 6 * 32, y: 18 * 32 },
+  { id: 15, name: 'tree-6', x: 48 * 32, y: 8 * 32 },
+  { id: 16, name: 'tree-7', x: 46 * 32, y: 12 * 32 },
+  { id: 17, name: 'tree-8', x: 48 * 32, y: 16 * 32 },
+  { id: 18, name: 'tree-9', x: 10 * 32, y: 32 * 32 },
+  { id: 19, name: 'tree-10', x: 44 * 32, y: 32 * 32 },
 
   // Hay bales (near riverbank)
-  { id: 20, name: 'hay-1', x: 6 * 32, y: 20 * 32 },
-  { id: 21, name: 'hay-2', x: 8 * 32, y: 21 * 32 },
-  { id: 22, name: 'hay-3', x: 10 * 32, y: 20 * 32 },
-  { id: 23, name: 'hay-4', x: 18 * 32, y: 20 * 32 },
-  { id: 24, name: 'hay-5', x: 20 * 32, y: 21 * 32 },
+  { id: 20, name: 'hay-1', x: 12 * 32, y: 40 * 32 },
+  { id: 21, name: 'hay-2', x: 16 * 32, y: 42 * 32 },
+  { id: 22, name: 'hay-3', x: 20 * 32, y: 40 * 32 },
+  { id: 23, name: 'hay-4', x: 36 * 32, y: 40 * 32 },
+  { id: 24, name: 'hay-5', x: 40 * 32, y: 42 * 32 },
 
   // Mud piles (near riverbank)
-  { id: 25, name: 'mud-1', x: 12 * 32, y: 21 * 32 },
-  { id: 26, name: 'mud-2', x: 14 * 32, y: 20 * 32 },
-  { id: 27, name: 'mud-3', x: 22 * 32, y: 20 * 32 },
-  { id: 28, name: 'mud-4', x: 24 * 32, y: 21 * 32 },
-  { id: 29, name: 'mud-5', x: 16 * 32, y: 21 * 32 },
+  { id: 25, name: 'mud-1', x: 24 * 32, y: 42 * 32 },
+  { id: 26, name: 'mud-2', x: 28 * 32, y: 40 * 32 },
+  { id: 27, name: 'mud-3', x: 44 * 32, y: 40 * 32 },
+  { id: 28, name: 'mud-4', x: 48 * 32, y: 42 * 32 },
+  { id: 29, name: 'mud-5', x: 32 * 32, y: 42 * 32 },
 
   // Construction sites (4 palisade wall segments)
-  { id: 30, name: 'construction-1', x: 8 * 32, y: 8 * 32 },    // west wall
-  { id: 31, name: 'construction-2', x: 21 * 32, y: 8 * 32 },   // east wall
-  { id: 32, name: 'construction-3', x: 8 * 32, y: 16 * 32 },   // SW wall
-  { id: 33, name: 'construction-4', x: 21 * 32, y: 16 * 32 },  // SE wall
+  { id: 30, name: 'construction-1', x: 16 * 32, y: 16 * 32 },    // west wall
+  { id: 31, name: 'construction-2', x: 42 * 32, y: 16 * 32 },    // east wall
+  { id: 32, name: 'construction-3', x: 16 * 32, y: 32 * 32 },    // SW wall
+  { id: 33, name: 'construction-4', x: 42 * 32, y: 32 * 32 },    // SE wall
 
   // Storehouse site
-  { id: 34, name: 'storehouse-site', x: 18 * 32, y: 14 * 32 },
+  { id: 34, name: 'storehouse-site', x: 36 * 32, y: 28 * 32 },
 
   // Lookout tower site (south, near river)
-  { id: 35, name: 'lookout-site', x: 15 * 32, y: 19 * 32 },
+  { id: 35, name: 'lookout-site', x: 30 * 32, y: 38 * 32 },
 
   // Quest 5 NPCs
-  { id: 36, name: 'namontack-jt', x: 14 * 32, y: 3 * 32 },     // Namontack at north gate
-  { id: 37, name: 'settler', x: 10 * 32, y: 12 * 32 },          // Settler in clearing
-  { id: 38, name: 'lookout-defend', x: 15 * 32, y: 18 * 32 },   // Lookout defense point
+  { id: 36, name: 'namontack-jt', x: 28 * 32, y: 6 * 32 },      // Namontack at north gate
+  { id: 37, name: 'settler', x: 20 * 32, y: 24 * 32 },           // Settler in clearing
+  { id: 38, name: 'lookout-defend', x: 30 * 32, y: 36 * 32 },    // Lookout defense point
 ]
 
 const objectXml = objects.map(obj =>
@@ -206,4 +207,4 @@ ${objectXml}
 `
 
 writeFileSync(join(mapsDir, 'jamestown.tmx'), tmx)
-console.log('Generated jamestown.tmx with custom tileset')
+console.log(`Generated jamestown.tmx (${W}x${H}) with custom tileset`)
