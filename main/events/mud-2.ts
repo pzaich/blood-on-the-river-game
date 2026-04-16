@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 @EventData({ name: 'mud-2', hitbox: { width: 8, height: 8 } })
 export default class Mud2Event extends RpgEvent {
     private cooldown = false
-    onInit() { this.setGraphic('barrel') }
+    onInit() { this.setGraphic('mud') }
     async onAction(player: RpgPlayer) {
         if (this.cooldown) return
         if (player.getVariable('quest_2b') != 'active') {

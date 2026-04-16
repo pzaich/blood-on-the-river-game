@@ -8,7 +8,7 @@ export default class Construction1Event extends RpgEvent {
     private built = false
 
     onInit() {
-        this.setGraphic('crate') // placeholder
+        this.setGraphic('foundation')
     }
 
     async onAction(player: RpgPlayer) {

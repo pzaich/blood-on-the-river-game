@@ -10,10 +10,8 @@ const player: RpgPlayerHooks = {
         }
     },
 
-    onInput(player: RpgPlayer, { input }) {
-        if (input == Control.Back) {
-            player.callMainMenu()
-        }
+    onInput(_player: RpgPlayer, { input: _input }) {
+        // Menu disabled — no callMainMenu on Escape
     },
 
     async onJoinMap(player: RpgPlayer) {

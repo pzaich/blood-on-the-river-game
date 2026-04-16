@@ -150,7 +150,7 @@ export class WallSprite {}
 export class SquirrelSprite {}
 
 @Spritesheet({
-    id: 'wheat-sprite',
+    id: 'wheat',
     image: require('./wheat.png'),
     ...RMSpritesheet(3, 4)
 })
@@ -162,6 +162,20 @@ export class WheatSprite {}
     ...RMSpritesheet(3, 4)
 })
 export class CarrotSprite {}
+
+@Spritesheet({
+    id: 'mud',
+    image: require('./mud.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class MudSprite {}
+
+@Spritesheet({
+    id: 'foundation',
+    image: require('./foundation.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class FoundationSprite {}
 
 @Spritesheet({
     id: 'hero',

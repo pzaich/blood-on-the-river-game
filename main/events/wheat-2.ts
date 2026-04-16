@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 @EventData({ name: 'wheat-2', hitbox: { width: 8, height: 8 } })
 export default class Wheat2Event extends RpgEvent {
     private collected = false
-    onInit() { this.setGraphic('wheat-sprite') }
+    onInit() { this.setGraphic('wheat') }
     async onAction(player: RpgPlayer) {
         if (this.collected) { await player.showText("Already harvested."); return }
         if (player.getVariable('quest_3c') !== 'active') { await player.showText("Golden wheat sways in the breeze."); return }

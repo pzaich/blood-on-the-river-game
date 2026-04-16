@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 @EventData({ name: 'hay-1', hitbox: { width: 8, height: 8 } })
 export default class Hay1Event extends RpgEvent {
     private cooldown = false
-    onInit() { this.setGraphic('crate') }
+    onInit() { this.setGraphic('wheat') }
     async onAction(player: RpgPlayer) {
         if (this.cooldown) return
         if (player.getVariable('quest_2b') != 'active') {

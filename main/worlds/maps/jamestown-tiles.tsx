@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.9" tiledversion="1.9.2" name="jamestown-tiles" tilewidth="32" tileheight="32" tilecount="32" columns="8">
- <image source="jamestown-tiles.png" width="256" height="128"/>
+<tileset version="1.9" tiledversion="1.9.2" name="jamestown-tiles" tilewidth="32" tileheight="32" tilecount="40" columns="8">
+ <image source="jamestown-tiles.png" width="256" height="160"/>
  <tile id="0"><properties><property name="collision" type="bool" value="false"/></properties></tile>
  <tile id="1"><properties><property name="collision" type="bool" value="false"/></properties></tile>
  <tile id="2"><properties><property name="collision" type="bool" value="false"/></properties></tile>
@@ -33,4 +33,5 @@
  <tile id="29"><properties><property name="collision" type="bool" value="true"/></properties></tile>
  <tile id="30"><properties><property name="collision" type="bool" value="true"/></properties></tile>
  <tile id="31"><properties><property name="collision" type="bool" value="true"/></properties></tile>
+ <tile id="32"><properties><property name="collision" type="bool" value="false"/></properties></tile>
 </tileset>
