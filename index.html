@@ -168,8 +168,8 @@
         }
     </style>
 
-    <!-- Debug Panel (dev mode only) -->
-    <div id="debug-panel">
+    <!-- Debug Panel (dev mode only — hidden in production builds) -->
+    <div id="debug-panel" style="display:none">
         <div id="debug-toggle" onclick="document.getElementById('debug-panel').classList.toggle('open')">DEBUG</div>
         <div id="debug-content">
             <h3>Quest State</h3>
@@ -306,6 +306,11 @@
         }
         .debug-section button:hover { background: #0a0; color: #000; }
     </style>
+    <script type="module">
+        if (import.meta.env.VITE_DEBUG === 'true') {
+            document.getElementById('debug-panel').style.display = '';
+        }
+    </script>
 
     <script>
         // ===== SOUND ENGINE (Web Audio API) =====

@@ -83,6 +83,9 @@ rpg.toml                      # Game config (start map, modules, hitbox)
 ## Game Design Reference
 See `PLAN.md` for full quest design, item database, map connections, and implementation phases.
 
+## Pre-Commit Build Check
+A Claude Code hook in `.claude/settings.json` automatically runs `npm run build` before every `git commit`. If the build fails, the commit is blocked. Fix all build errors before committing.
+
 ## Git & Commit Practices
 - **Branch:** `main` is the default branch
 - **When to commit:** After each meaningful, working milestone — not after every tiny edit, but don't let large amounts of work pile up uncommitted either. Good commit points:

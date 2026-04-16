@@ -2,7 +2,7 @@
     "name": "my-game",
     "scripts": {
         "build": "RPG_TYPE=rpg rpgjs build",
-        "dev": "RPG_TYPE=rpg rpgjs dev",
+        "dev": "RPG_TYPE=rpg VITE_DEBUG=true rpgjs dev",
         "start": "node dist/server/main.mjs"
     },
     "engines": {
