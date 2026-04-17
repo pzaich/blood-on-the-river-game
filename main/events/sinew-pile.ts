@@ -6,7 +6,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 })
 export default class SinewPileEvent extends RpgEvent {
     private collected = false
-    onInit() { this.setGraphic('barrel') }
+    onInit() { this.setGraphic('sinew') }
 
     async onAction(player: RpgPlayer) {
         if (this.collected) { await player.showText("Already collected."); return }

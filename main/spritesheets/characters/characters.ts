@@ -10,6 +10,20 @@ const { RMSpritesheet } = Presets
 export default class Characters {}
 
 @Spritesheet({
+    id: 'deerhide',
+    image: require('./deerhide.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class DeerHideSprite {}
+
+@Spritesheet({
+    id: 'sinew',
+    image: require('./sinew.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class SinewSprite {}
+
+@Spritesheet({
     id: 'smith',
     image: require('./smith.png'),
     ...RMSpritesheet(3, 4)
@@ -162,6 +176,42 @@ export class WheatSprite {}
     ...RMSpritesheet(3, 4)
 })
 export class CarrotSprite {}
+
+@Spritesheet({
+    id: 'target',
+    image: require('./target.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class TargetSprite {}
+
+@Spritesheet({
+    id: 'archery',
+    image: require('./archery.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class ArcherySprite {}
+
+@Spritesheet({
+    id: 'goal',
+    image: require('./goal.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class GoalSprite {}
+
+@Spritesheet({
+    id: 'lookout',
+    image: require('./lookout.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class LookoutSprite {}
+
+@Spritesheet({
+    id: 'campfire',
+    image: require('./campfire.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class CampfireSprite {}
+
 
 @Spritesheet({
     id: 'broken-wall',

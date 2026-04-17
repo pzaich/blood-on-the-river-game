@@ -8,7 +8,7 @@ export default class Target3Event extends RpgEvent {
     private hitCooldown = false
 
     onInit() {
-        this.setGraphic('crate')
+        this.setGraphic('target')
         this.speed = 5
 
         // Only move during training — check localStorage flag

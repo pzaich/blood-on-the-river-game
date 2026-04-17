@@ -6,7 +6,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 })
 export default class DeerHideEvent extends RpgEvent {
     private collected = false
-    onInit() { this.setGraphic('crate') }
+    onInit() { this.setGraphic('deerhide') }
 
     async onAction(player: RpgPlayer) {
         if (this.collected) { await player.showText("Already collected."); return }

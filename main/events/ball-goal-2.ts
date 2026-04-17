@@ -6,7 +6,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 })
 export default class BallGoal2Event extends RpgEvent {
     private cooldown = false
-    onInit() { this.setGraphic('crate') }
+    onInit() { this.setGraphic('goal') }
 
     async onAction(player: RpgPlayer) {
         if (player.getVariable('quest_4d') !== 'active') {

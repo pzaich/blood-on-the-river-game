@@ -8,7 +8,7 @@ export default class Archery1Event extends RpgEvent {
     private hitCooldown = false
 
     onInit() {
-        this.setGraphic('crate')
+        this.setGraphic('archery')
         this.speed = 3
 
         // Targets move when archery quest is active

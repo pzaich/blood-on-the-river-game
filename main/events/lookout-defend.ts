@@ -5,7 +5,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
     hitbox: { width: 8, height: 8 }
 })
 export default class LookoutDefendEvent extends RpgEvent {
-    onInit() { this.setGraphic('crate') }
+    onInit() { this.setGraphic('lookout') }
 
     async onAction(player: RpgPlayer) {
         if (player.getVariable('quest_5b') !== 'active') {

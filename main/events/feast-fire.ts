@@ -5,7 +5,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
     hitbox: { width: 8, height: 8 }
 })
 export default class FeastFireEvent extends RpgEvent {
-    onInit() { this.setGraphic('barrel') }
+    onInit() { this.setGraphic('campfire') }
 
     async onAction(player: RpgPlayer) {
         if (player.getVariable('quest_4f') !== 'active') {
