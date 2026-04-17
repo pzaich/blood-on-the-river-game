@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 @EventData({ name: 'carrot-1', hitbox: { width: 8, height: 8 } })
 export default class Carrot1Event extends RpgEvent {
     private collected = false
-    onInit() { this.setGraphic('carrot-sprite') }
+    onInit() { this.setGraphic('carrot') }
     async onAction(player: RpgPlayer) {
         if (this.collected) { await player.showText("Already picked."); return }
         if (player.getVariable('quest_3c') !== 'active') { await player.showText("Fresh carrots grow in the soil."); return }

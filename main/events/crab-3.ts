@@ -6,7 +6,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 })
 export default class Crab3Event extends RpgEvent {
     private collected = false
-    onInit() { this.setGraphic('crab-sprite') }
+    onInit() { this.setGraphic('crab') }
 
     async onAction(player: RpgPlayer) {
         if (this.collected) { await player.showText("Already caught."); return }

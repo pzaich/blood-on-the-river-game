@@ -52,21 +52,21 @@ export class CrateSprite {}
 export class TreeSprite {}
 
 @Spritesheet({
-    id: 'crab-sprite',
+    id: 'crab',
     image: require('./crab.png'),
     ...RMSpritesheet(3, 4)
 })
 export class CrabSprite {}
 
 @Spritesheet({
-    id: 'mussel-sprite',
+    id: 'mussel',
     image: require('./mussel.png'),
     ...RMSpritesheet(3, 4)
 })
 export class MusselSprite {}
 
 @Spritesheet({
-    id: 'namontack-sprite',
+    id: 'namontack',
     image: require('./namontack.png'),
     ...RMSpritesheet(3, 4)
 })
@@ -80,70 +80,70 @@ export class NamontackSprite {}
 export class PowhatanSprite {}
 
 @Spritesheet({
-    id: 'deer-sprite',
+    id: 'deer',
     image: require('./deer.png'),
     ...RMSpritesheet(3, 4)
 })
 export class DeerSprite {}
 
 @Spritesheet({
-    id: 'rabbit-sprite',
+    id: 'rabbit',
     image: require('./rabbit.png'),
     ...RMSpritesheet(3, 4)
 })
 export class RabbitSprite {}
 
 @Spritesheet({
-    id: 'berry-sprite',
+    id: 'berry',
     image: require('./berry.png'),
     ...RMSpritesheet(3, 4)
 })
 export class BerrySprite {}
 
 @Spritesheet({
-    id: 'chicken-sprite',
+    id: 'chicken',
     image: require('./chicken.png'),
     ...RMSpritesheet(3, 4)
 })
 export class ChickenSprite {}
 
 @Spritesheet({
-    id: 'pig-sprite',
+    id: 'pig',
     image: require('./pig.png'),
     ...RMSpritesheet(3, 4)
 })
 export class PigSprite {}
 
 @Spritesheet({
-    id: 'turkey-sprite',
+    id: 'turkey',
     image: require('./turkey.png'),
     ...RMSpritesheet(3, 4)
 })
 export class TurkeySprite {}
 
 @Spritesheet({
-    id: 'bear-sprite',
+    id: 'bear',
     image: require('./bear.png'),
     ...RMSpritesheet(3, 4)
 })
 export class BearSprite {}
 
 @Spritesheet({
-    id: 'corn-sprite',
+    id: 'corn',
     image: require('./corn.png'),
     ...RMSpritesheet(3, 4)
 })
 export class CornSprite {}
 
 @Spritesheet({
-    id: 'wall-sprite',
+    id: 'wall',
     image: require('./wall.png'),
     ...RMSpritesheet(3, 4)
 })
 export class WallSprite {}
 
 @Spritesheet({
-    id: 'squirrel-sprite',
+    id: 'squirrel',
     image: require('./squirrel.png'),
     ...RMSpritesheet(3, 4)
 })
@@ -157,11 +157,32 @@ export class SquirrelSprite {}
 export class WheatSprite {}
 
 @Spritesheet({
-    id: 'carrot-sprite',
+    id: 'carrot',
     image: require('./carrot.png'),
     ...RMSpritesheet(3, 4)
 })
 export class CarrotSprite {}
+
+@Spritesheet({
+    id: 'broken-wall',
+    image: require('./broken-wall.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class BrokenWallSprite {}
+
+@Spritesheet({
+    id: 'xmarker',
+    image: require('./xmarker.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class XMarkerSprite {}
+
+@Spritesheet({
+    id: 'fort',
+    image: require('./fort.png'),
+    ...RMSpritesheet(3, 4)
+})
+export class FortSprite {}
 
 @Spritesheet({
     id: 'mud',

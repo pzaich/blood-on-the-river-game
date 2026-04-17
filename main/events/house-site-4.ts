@@ -8,7 +8,7 @@ export default class HouseSite4Event extends RpgEvent {
     private built = false
 
     onInit() {
-        this.setGraphic('crate')
+        this.setGraphic('xmarker')
     }
 
     async onAction(player: RpgPlayer) {

@@ -1,7 +1,7 @@
 import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 @EventData({ name: 'bear-1', hitbox: { width: 8, height: 8 } })
 export default class Bear1Event extends RpgEvent {
-    onInit() { this.setGraphic('bear-sprite') }
+    onInit() { this.setGraphic('bear') }
     async onAction(player: RpgPlayer) {
         if (player.getVariable('quest_3e') === 'active') {
             await player.showText("A massive black bear! It growls at you. Better leave it alone and focus on the deer.")

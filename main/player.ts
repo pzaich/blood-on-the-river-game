@@ -10,8 +10,9 @@ const player: RpgPlayerHooks = {
         }
     },
 
-    onInput(_player: RpgPlayer, { input: _input }) {
-        // Menu disabled — no callMainMenu on Escape
+    onInput(player: RpgPlayer, { input }) {
+        // Escape: do nothing (menu disabled)
+        // Action (space/enter): let RPG-JS handle event interaction normally
     },
 
     async onJoinMap(player: RpgPlayer) {

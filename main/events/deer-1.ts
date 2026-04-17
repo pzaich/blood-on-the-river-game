@@ -6,7 +6,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 })
 export default class Deer1Event extends RpgEvent {
     private hunted = false
-    onInit() { this.setGraphic('deer-sprite') }
+    onInit() { this.setGraphic('deer') }
 
     async onAction(player: RpgPlayer) {
         if (this.hunted) { await player.showText("The deer has been hunted."); return }

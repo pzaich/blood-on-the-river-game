@@ -26,7 +26,9 @@
       "Bash(cp main/worlds/maps/ship-tiles.png /tmp/ship-only-tiles.png)",
       "Bash(convert main/worlds/maps/jamestown-tiles.png /tmp/ship-only-tiles.png -append main/worlds/maps/ship-tiles.png)",
       "Bash(identify main/worlds/maps/ship-tiles.png)",
-      "Bash([ ! -f \"main/events/$f.ts\" ])"
+      "Bash([ ! -f \"main/events/$f.ts\" ])",
+      "Bash(mkdir -p /Users/paulzaich/code/blood-on-the-river/.claude/skills/verify-sprites)",
+      "Bash(mv /Users/paulzaich/code/blood-on-the-river/.claude/skills/verify-sprites.md /Users/paulzaich/code/blood-on-the-river/.claude/skills/verify-sprites/SKILL.md)"
     ]
   }
 }

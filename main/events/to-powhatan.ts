@@ -10,7 +10,7 @@ export default class ToPowhatanEvent extends RpgEvent {
     async onPlayerTouch(player: RpgPlayer) {
         const quest = player.getVariable('current_quest') || 0
         if (quest >= 4) {
-            player.changeMap('powhatan-village')
+            player.changeMap('powhatan-village', { x: 320, y: 576 })
         } else {
             player.showNotification("You're not ready to visit the Powhatan village yet.", { time: 2000 })
         }

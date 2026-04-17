@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 @EventData({ name: 'turkey-2', hitbox: { width: 8, height: 8 } })
 export default class Turkey2Event extends RpgEvent {
     private caught = false
-    onInit() { this.setGraphic('turkey-sprite') }
+    onInit() { this.setGraphic('turkey') }
     async onAction(player: RpgPlayer) {
         if (this.caught) { await player.showText("Already caught."); return }
         if (player.getVariable('quest_3d') !== 'active') { await player.showText("A wild turkey struts through the brush."); return }

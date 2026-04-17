@@ -8,6 +8,6 @@ export default class ToJamestownEvent extends RpgEvent {
     onInit() {}
 
     async onPlayerTouch(player: RpgPlayer) {
-        player.changeMap('jamestown')
+        player.changeMap('jamestown', { x: 960, y: 800 })
     }
 }

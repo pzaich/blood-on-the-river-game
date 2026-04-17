@@ -8,7 +8,7 @@ export default class Construction3Event extends RpgEvent {
     private built = false
 
     onInit() {
-        this.setGraphic('foundation')
+        this.setGraphic('broken-wall')
     }
 
     async onAction(player: RpgPlayer) {

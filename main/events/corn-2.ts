@@ -2,7 +2,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 @EventData({ name: 'corn-2', hitbox: { width: 8, height: 8 } })
 export default class Corn2Event extends RpgEvent {
     private collected = false
-    onInit() { this.setGraphic('corn-sprite') }
+    onInit() { this.setGraphic('corn') }
     async onAction(player: RpgPlayer) {
         if (this.collected) { await player.showText("Already harvested."); return }
         if (player.getVariable('quest_3c') !== 'active') { await player.showText("Wild corn grows tall here."); return }

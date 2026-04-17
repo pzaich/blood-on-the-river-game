@@ -6,7 +6,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 })
 export default class LookoutSiteEvent extends RpgEvent {
     onInit() {
-        this.setGraphic('crate')
+        this.setGraphic('fort')
     }
 
     async onAction(player: RpgPlayer) {

@@ -12,7 +12,7 @@
   </data>
  </layer>
  <objectgroup id="3" name="Events">
-  <object id="1" name="from-jamestown-pv" class="start" x="320" y="576">
+  <object id="1" name="from-jamestown-pv" x="320" y="576">
    <point/>
   </object>
   <object id="2" name="namontack" x="320" y="480">

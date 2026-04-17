@@ -182,7 +182,7 @@ export default class CaptainSmithEvent extends RpgEvent {
                 })
                 player.setVariable('current_quest', 2)
                 if (typeof localStorage !== 'undefined') localStorage.setItem('game-sound', 'mapChange')
-                player.changeMap('jamestown')
+                player.changeMap('jamestown', { x: 960, y: 800 })
             }
             return
         }

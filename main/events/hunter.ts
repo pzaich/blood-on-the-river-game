@@ -92,7 +92,9 @@ export default class HunterEvent extends RpgEvent {
         }
 
         if (q3e === 'complete') {
-            await player.showText("You've mastered the hunt, Samuel! Head back to Jamestown.", { talkWith: this })
+            await player.showText("You've mastered the hunt, Samuel! You're ready for the next challenge.", { talkWith: this })
+            await player.showText("The Powhatan people live north of Jamestown. Go back west to Jamestown, then head north to their village.", { talkWith: this })
+            await player.showText("They have much to teach you. Go as a friend, not a stranger.", { talkWith: this })
             player.setVariable('current_quest', 4)
             return
         }

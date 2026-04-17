@@ -127,9 +127,14 @@ A Claude Code hook in `.claude/settings.json` automatically runs `npm run build`
 
 ### Sprites
 - Sprites use `RMSpritesheet(3, 4)` preset: 3 columns x 4 rows, 32x32 per cell = 96x128 PNG
+- **NEVER use hyphens + suffix in sprite IDs** (e.g., `crab-sprite`). RPG-JS fails to render sprites whose IDs contain `-sprite`, `-icon`, etc. Use simple names: `crab`, `mussel`, `wheat`, `mud`. This has caused invisible sprites multiple times.
 - If a sprite doesn't render, try using a known-working sprite ID (`samuel`, `smith`, `hunt`, `richard`) to verify the event is placed correctly
 - Register all sprites in `main/spritesheets/characters/characters.ts` with `@Spritesheet` decorator
 - The `export default` class gets the `images` property auto-set by the compiler; additional sprites use named exports
+- Run `/verify-sprites` to check all sprite registrations, event references, and PNG dimensions
+
+### TMX Start Objects
+- **Do NOT use `class="start"` on TMX objects** — it creates an interactive shape that interferes with Space/Enter input and can teleport the player unexpectedly. Use `name="start"` without a class attribute, or better yet, pass explicit coordinates to `changeMap()` calls instead of relying on start objects.
 
 ## Important Notes
 - This is an educational game for children — keep content age-appropriate

@@ -16,8 +16,8 @@
         },
         {
             "fileName": "maps/wilderness.tmx",
-            "height": 640,
-            "width": 640,
+            "height": 1280,
+            "width": 1280,
             "x": 2000,
             "y": 0
         },

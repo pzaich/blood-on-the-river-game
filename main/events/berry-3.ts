@@ -6,7 +6,7 @@ import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
 })
 export default class Berry3Event extends RpgEvent {
     private collected = false
-    onInit() { this.setGraphic('berry-sprite') }
+    onInit() { this.setGraphic('berry') }
     async onAction(player: RpgPlayer) {
         if (this.collected) { await player.showText("Already picked."); return }
         if (player.getVariable('quest_3c') !== 'active') {
