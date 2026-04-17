@@ -10,6 +10,113 @@
 <body>
     <div id="rpg"></div>
 
+    <!-- Credits overlay -->
+    <div id="credits-overlay" class="credits-hidden">
+        <div id="credits-scroll">
+            <h1>Blood on the River</h1>
+            <h2>James Town, 1607</h2>
+            <p class="credits-spacer"></p>
+            <h3>Producer, Author &amp; Creator</h3>
+            <p>Bennett Zaich</p>
+            <p class="credits-spacer"></p>
+            <h3>Based on the book by</h3>
+            <p>Elisa Carbone</p>
+            <p class="credits-spacer"></p>
+            <h3>Characters</h3>
+            <p>Samuel Collier &mdash; Player Character</p>
+            <p>Captain John Smith &mdash; Mentor</p>
+            <p>Reverend Robert Hunt &mdash; Peacemaker</p>
+            <p>Richard Mutton &mdash; Friend</p>
+            <p>John Laydon &mdash; Carpenter</p>
+            <p>Namontack &mdash; Powhatan Friend</p>
+            <p>Chief Powhatan &mdash; Leader</p>
+            <p class="credits-spacer"></p>
+            <h3>Your Journey</h3>
+            <p>From the decks of the Susan Constant</p>
+            <p>to the shores of Virginia...</p>
+            <p>You built James Fort.</p>
+            <p>You learned to hunt and survive.</p>
+            <p>You earned the trust of the Powhatan people.</p>
+            <p>You kept the peace between two worlds.</p>
+            <p class="credits-spacer"></p>
+            <h3>Themes</h3>
+            <p>Friendship across cultures</p>
+            <p>Hard work builds community</p>
+            <p>Understanding conquers fear</p>
+            <p class="credits-spacer"></p>
+            <h3>Built With</h3>
+            <p>RPG-JS &bull; PixiJS &bull; Vue.js &bull; Vite</p>
+            <p class="credits-spacer"></p>
+            <h3>Thank You for Playing!</h3>
+            <p class="credits-spacer"></p>
+            <p class="credits-spacer"></p>
+            <p class="credits-final">The End</p>
+        </div>
+    </div>
+
+    <style>
+        #credits-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 9000;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        #credits-overlay.credits-hidden {
+            display: none;
+        }
+        #credits-scroll {
+            position: absolute;
+            top: 100%;
+            width: 500px;
+            text-align: center;
+            animation: scrollCredits 35s linear forwards;
+        }
+        #credits-scroll h1 {
+            font-family: Georgia, serif;
+            font-size: 36px;
+            color: #DAA520;
+            margin: 0 0 8px;
+        }
+        #credits-scroll h2 {
+            font-family: Georgia, serif;
+            font-size: 20px;
+            color: #B8860B;
+            margin: 0 0 20px;
+            font-style: italic;
+        }
+        #credits-scroll h3 {
+            font-family: Georgia, serif;
+            font-size: 18px;
+            color: #DAA520;
+            margin: 20px 0 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        #credits-scroll p {
+            font-family: Georgia, serif;
+            font-size: 16px;
+            color: #CCCCCC;
+            margin: 4px 0;
+            line-height: 1.6;
+        }
+        .credits-spacer {
+            height: 40px !important;
+        }
+        .credits-final {
+            font-size: 28px !important;
+            color: #DAA520 !important;
+            margin-top: 40px !important;
+        }
+        @keyframes scrollCredits {
+            0% { top: 100%; }
+            100% { top: -150%; }
+        }
+    </style>
+
     <!-- Storm overlay -->
     <div id="storm-overlay" class="storm-hidden">
         <div class="rain"></div>
@@ -261,6 +368,11 @@
                 <button onclick="localStorage.setItem('storm-active','false')">Storm OFF</button>
             </div>
 
+            <h4>Credits</h4>
+            <div class="debug-section">
+                <button onclick="localStorage.setItem('show-credits','true')">Show Credits</button>
+            </div>
+
             <h4>Live Variables <button onclick="dbgCopyVars()" style="font-size:9px">Copy</button></h4>
             <pre id="dbg-vars" style="font-size:10px;max-height:150px;overflow:auto;background:#111;padding:4px;margin:4px 0;">Loading...</pre>
         </div>
@@ -398,6 +510,26 @@
             // Initialize audio on first interaction (required by browsers)
             document.addEventListener('click', () => SFX.init(), { once: true });
             document.addEventListener('keydown', () => SFX.init(), { once: true });
+        })();
+
+        // Credits controller
+        (function() {
+            const creditsOverlay = document.getElementById('credits-overlay');
+            setInterval(() => {
+                if (localStorage.getItem('show-credits') === 'true') {
+                    localStorage.removeItem('show-credits');
+                    creditsOverlay.className = '';
+                    // Reset animation
+                    const scroll = document.getElementById('credits-scroll');
+                    scroll.style.animation = 'none';
+                    scroll.offsetHeight; // force reflow
+                    scroll.style.animation = 'scrollCredits 35s linear forwards';
+                }
+            }, 200);
+            // Click to dismiss credits
+            creditsOverlay.addEventListener('click', () => {
+                creditsOverlay.className = 'credits-hidden';
+            });
         })();
 
         // Storm effect controller

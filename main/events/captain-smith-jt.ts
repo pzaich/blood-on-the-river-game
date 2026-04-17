@@ -86,6 +86,9 @@ export default class CaptainSmithJTEvent extends RpgEvent {
                 await player.showText("And this is only the beginning...", { talkWith: this })
                 player.setVariable('quest_5d', 'complete')
                 player.showNotification("Congratulations! You've completed Blood on the River!", { time: 5000 })
+                if (typeof localStorage !== 'undefined') {
+                    setTimeout(() => localStorage.setItem('show-credits', 'true'), 3000)
+                }
                 return
             }
 
